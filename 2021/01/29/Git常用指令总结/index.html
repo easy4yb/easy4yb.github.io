@@ -341,21 +341,23 @@
   
 
   
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
-<script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+  {% if site.comment_gitment_repo %}
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
-var gitment = new Gitment({
-  id: "https://easy4yb.github.io/2021/01/29/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/",
-  owner: 'easy4yb',
-  repo: 'easy4yb.github.io',
-  oauth: {
-    client_id: 'e3df982d61f9cf249f85',
-    client_secret: '0d9a8bdb67ef5e758b6ee4574ec68c543446cebf',
-  },
-})
-gitment.render('gitment-ctn')
+    var gitment = new Gitment({
+        id: 'Fri Jan 29 2021 00:00:00 GMT+0800',
+        owner: '{{site.github_username}}',
+        repo: '{{site.comment_gitment_repo}}',
+        oauth: {
+            client_id: '{{site.comment_gitment_clientId}}',
+            client_secret: '{{site.comment_gitment_clientSecret}}',
+        },
+    });
+    gitment.render('gitmentContainer')
 </script>
+{% endif %}
   
 
 
