@@ -149,56 +149,14 @@
     <article id="post-JavaScript实现栈" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/">JavaScript实现栈</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/" class="archive-article-date">
-  	<time datetime="2021-02-09T14:34:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-09</time>
-</a>
-        
-        <!-- 阅读量统计 -->
-        
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="栈结构"><a href="#栈结构" class="headerlink" title="栈结构"></a>栈结构</h3><p>栈是一种“运算受限”的线性表，其特点为：</p>
-<ul>
-<li>LIFO（last in first out），即后入栈的元素，将会先弹出栈空间，类似把很多碟子垒在一起，后放上去的必须先拿出来</li>
-</ul>
-<p><strong>如图所示：</strong></p>
-<p><img src="/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/Stack.jpg" alt="栈结构图示"></p>
-<ol>
-<li>向一个栈插入新元素又称作进栈，入栈或压栈，它是把新元素放到栈顶元素的上面，使之成为新的栈顶元素</li>
-<li>从一个栈删除元素又称作出栈或退栈，它是把栈顶元素删除掉，使其相邻的元素成为新的栈顶元素。</li>
-</ol>
-<h3 id="栈结构常见操作"><a href="#栈结构常见操作" class="headerlink" title="栈结构常见操作"></a>栈结构常见操作</h3><ul>
-<li><p><code>push(element)</code>:  添加一个新元素到栈顶位置.</p>
-</li>
-<li><p><code>pop()</code>：移除栈顶的元素，同时返回被移除的元素。</p>
-</li>
-<li><p><code>peek()</code>：返回栈顶的元素，不对栈做任何修改（这个方法不会移除栈顶的元素，仅仅返回它）。</p>
-</li>
-<li><p><code>isEmpty()</code>：如果栈里没有任何元素就返回<code>true</code>，否则返回<code>false</code>。</p>
-</li>
-<li><p><code>clear()</code>：移除栈里的所有元素。</p>
-</li>
-<li><p><code>size()</code>：返回栈里的元素个数。这个方法和数组的<code>length</code>属性很类似。</p>
-</li>
-</ul>
-<h3 id="栈的实现"><a href="#栈的实现" class="headerlink" title="栈的实现"></a>栈的实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建栈</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//栈中的属性</span></span><br><span class="line">    <span class="built_in">this</span>.items = []; </span><br><span class="line">    <span class="comment">//栈中的方法</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//添加一个新元素到栈顶位置</span></span><br><span class="line">    Stack.prototype.push = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//借用数组的push()方法</span></span><br><span class="line">        <span class="built_in">this</span>.items.push(element);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//移除栈顶的元素，同时返回被移除的元素</span></span><br><span class="line">    Stack.prototype.pop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//借用数组的pop()方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//返回栈顶的元素，不对栈做任何修改</span></span><br><span class="line">    Stack.prototype.peek = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items[<span class="built_in">this</span>.items.length - <span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//如果栈里没有任何元素就返回true，否则返回false</span></span><br><span class="line">    Stack.prototype.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">this</span>.items.length == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//移除栈里的所有元素</span></span><br><span class="line">    Stack.prototype.clear = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.items = [];</span><br><span class="line">        <span class="comment">//也可以通过多次调用pop()</span></span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//返回栈里的元素个数</span></span><br><span class="line">    Stack.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items.length;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//重写toString方法</span></span><br><span class="line">    Stack.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> newString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.items.length; i++)&#123;</span><br><span class="line">            s += <span class="built_in">this</span>.items[i] + <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newString;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="栈的应用"><a href="#栈的应用" class="headerlink" title="栈的应用"></a>栈的应用</h3><h5 id="十进制转化为二进制"><a href="#十进制转化为二进制" class="headerlink" title="十进制转化为二进制"></a>十进制转化为二进制</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//十进制转化为二进制（decimal to binary)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dec2bin</span>(<span class="params">decNumber</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> stack = <span class="keyword">new</span> Stack();</span><br><span class="line">    <span class="keyword">let</span> decNum = decNumber;</span><br><span class="line">    <span class="keyword">while</span>(decNum)&#123;</span><br><span class="line">        <span class="comment">//把decNum除以2的余数压入栈</span></span><br><span class="line">        stack.push(decNum % <span class="number">2</span>);</span><br><span class="line">       	<span class="comment">//更新decNum为其除以2向下取整的结果</span></span><br><span class="line">        decNum = <span class="built_in">Math</span>.floor(decNum/<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> binString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">while</span>(!stack.isEmpty())&#123;</span><br><span class="line">        binString += stack.pop();</span><br><span class="line">    &#125;	        </span><br><span class="line">    <span class="keyword">return</span> binString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+        <hr>
+<p>title: JavaScript实现栈<br>date: 2021-02-09 22:34:46<br>tags: 数据结构，JavaScript<br>author: 袁斌</p>
+<p>使用JavaScriot实现栈结构（数组方式）</p>
+        
+          <a class="article-more-a" href="/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/#more">more >></a>
+        
       
 
       
@@ -206,17 +164,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据结构，JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -519,10 +466,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据结构，JavaScript</a>
               </li>
              
               <li class="article-tag-list-item">
