@@ -6,17 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ez4yb.cn">
-  <title>Tag: 数据结构 | 袁斌的博客</title>
+  <title>JavaScript实现集合 | 袁斌的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="就读于华中科技大学电子信息与通信学院">
-<meta property="og:type" content="website">
-<meta property="og:title" content="袁斌的博客">
-<meta property="og:url" content="https://ez4yb.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+  <meta name="description" content="虽然es6已经包括了Set类，可以直接使用，但为了了解集合的内部实现机制，我尝试自己来封装一下这个Set类。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript实现集合">
+<meta property="og:url" content="https://ez4yb.cn/2021/02/15/JavaScript%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88/index.html">
 <meta property="og:site_name" content="袁斌的博客">
-<meta property="og:description" content="就读于华中科技大学电子信息与通信学院">
+<meta property="og:description" content="虽然es6已经包括了Set类，可以直接使用，但为了了解集合的内部实现机制，我尝试自己来封装一下这个Set类。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-15T00:29:44.000Z">
+<meta property="article:modified_time" content="2021-02-15T14:07:49.652Z">
 <meta property="article:author" content="袁斌">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
   
   
@@ -142,36 +145,110 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-JavaScript实现集合" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      JavaScript实现集合
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/15/JavaScript%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88/" class="archive-article-date">
+
+        
+        <a href="/2021/02/15/JavaScript%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88/" class="archive-article-date">
   	<time datetime="2021-02-15T00:29:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/15/JavaScript%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88/">JavaScript实现集合</a>
-    </h1>
-  
+        
+        <!-- 阅读量统计 -->
+        
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+      
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>虽然es6已经包括了Set类，可以直接使用，但为了了解集合的内部实现机制，我尝试自己来封装一下这个Set类。</p>
+<a id="more"></a>
+<h4 id="集合的特点"><a href="#集合的特点" class="headerlink" title="集合的特点"></a>集合的特点</h4><ol>
+<li>集合通常是由一组无序的不能重复的元素构成</li>
+<li>可以看作一种特殊的数组，特殊在于里面的元素没有顺序也不能重复</li>
+</ol>
+<h4 id="集合常用操作"><a href="#集合常用操作" class="headerlink" title="集合常用操作"></a>集合常用操作</h4><ul>
+<li>add(value): 向集合中添加一个新的项</li>
+<li>remove(value): 从集合中移除一个值</li>
+<li>has(value): 判断集合中是否存在该值</li>
+<li>clear(): 移除集合中的所有项</li>
+<li>size(): 返回集合所包含元素的数量</li>
+<li>values(): 返回一个包含集合中所有值的数组</li>
+</ul>
+<h4 id="集合的实现"><a href="#集合的实现" class="headerlink" title="集合的实现"></a>集合的实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">function Set()&#123;</span><br><span class="line">    &#x2F;&#x2F;属性</span><br><span class="line">    this.items &#x3D; &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;方法:</span><br><span class="line">    &#x2F;&#x2F;向集合添加一个新的项</span><br><span class="line">    Set.prototype.add &#x3D; function(value)&#123;</span><br><span class="line">        &#x2F;&#x2F;判断集合中是否已存在该元素</span><br><span class="line">        if(this.has(value))&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            this.items[value] &#x3D; value;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;从集合中移除一个值</span><br><span class="line">    Set.prototype.remove &#x3D; function()&#123;</span><br><span class="line">        if(this.has(value))&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            delete this.items[value];</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;如果值在集合中，返回true，否则返回false</span><br><span class="line">    Set.prototype.has &#x3D; function(value)&#123;</span><br><span class="line">        return this.items.hasOwnProperty(value);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#x2F;&#x2F;移除集合中的所有项</span><br><span class="line">    Set.prototype.clear &#x3D; function()&#123;</span><br><span class="line">        this.items &#x3D; &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;返回集合中所包含元素的数量</span><br><span class="line">    Set.prototype.size &#x3D; function()&#123;</span><br><span class="line">        return Object.keys(this.items).length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;返回一个包含集合中所有值的数组</span><br><span class="line">    Set.prototype.values &#x3D; function () &#123;</span><br><span class="line">        return Object.keys(this.items);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+
+<h4 id="集合间的操作"><a href="#集合间的操作" class="headerlink" title="集合间的操作"></a>集合间的操作</h4><ul>
+<li>求两集合并集</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">union</span>(<span class="params">otherSet</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//创建一个新的Set实例储存并集结果</span></span><br><span class="line">    <span class="keyword">let</span> unionSet = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//取出原集合的值</span></span><br><span class="line">    <span class="keyword">let</span> Values = <span class="built_in">this</span>.values();</span><br><span class="line">    <span class="comment">//把取出的值插入unionSet</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">        unionSet.add(values[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//取出另一集合的值</span></span><br><span class="line">    values = otherset.values();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">        unionSet.add(values[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> unionset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>求两集合交集</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>.prototype.intersection = <span class="function"><span class="keyword">function</span>(<span class="params">otherSet</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> intersectionSet = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> values = <span class="built_in">this</span>.values();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">        <span class="comment">//如果该值也存在于另一个集合，则存入</span></span><br><span class="line">        <span class="keyword">if</span>(otherSet.has(values[i]))&#123;</span><br><span class="line">            intersectionSet.add(values[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> intersectionSet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>求两集合差集</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>.prototype.difference = <span class="function"><span class="keyword">function</span>(<span class="params">otherSet</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">let</span> differeneSet = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">let</span> values = <span class="built_in">this</span>.values();</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">           <span class="comment">//如果该值不存在于另一个集合，则存入</span></span><br><span class="line">           <span class="keyword">if</span>(otherSet.has(values[i]))&#123;</span><br><span class="line">               differenceSet.add(values[i]);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> difference;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>子集判断</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Set</span>.prototype.subset = <span class="function"><span class="keyword">function</span>(<span class="params">otherset</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> values = <span class="built_in">this</span>.values();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!otherset.has(values[i]))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -187,145 +264,119 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ez4yb.cn/2021/02/15/JavaScript%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/14/JavaScript%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2021-02-13T23:30:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/02/14/JavaScript%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript实现链表</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/14/JavaScript%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8/">JavaScript实现链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.</span> <span class="toc-text">集合的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">集合常用操作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">集合的实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E9%97%B4%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">集合间的操作</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/13/JavaScript%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2021-02-13T01:22:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-13</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/13/JavaScript%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">JavaScript实现队列</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/" class="archive-article-date">
-  	<time datetime="2021-02-09T14:34:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/">JavaScript实现栈</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -352,9 +403,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
