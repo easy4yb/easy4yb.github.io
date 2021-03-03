@@ -6,18 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ez4yb.cn">
-  <title>Tag: Git | 袁斌的博客</title>
+  <title>CSS盒模型总结 | 袁斌的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="就读于华中科技大学电子信息与通信学院">
-<meta property="og:type" content="website">
-<meta property="og:title" content="袁斌的博客">
-<meta property="og:url" content="https://ez4yb.cn/tags/Git/index.html">
+  <meta name="description" content="对盒子模型做个简单概括">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS盒模型总结">
+<meta property="og:url" content="https://ez4yb.cn/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="袁斌的博客">
-<meta property="og:description" content="就读于华中科技大学电子信息与通信学院">
+<meta property="og:description" content="对盒子模型做个简单概括">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ez4yb.cn/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://ez4yb.cn/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E6%9B%BF%E4%BB%A3%E7%9B%92%E6%A8%A1%E5%9E%8B.png">
+<meta property="og:image" content="https://ez4yb.cn/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E4%B8%89%E8%A7%92%E5%BD%A2.png">
+<meta property="og:image" content="https://ez4yb.cn/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E9%87%8D%E5%8F%A0.png">
+<meta property="article:published_time" content="2021-02-27T13:44:49.000Z">
+<meta property="article:modified_time" content="2021-03-03T15:07:48.797Z">
 <meta property="article:author" content="袁斌">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ez4yb.cn/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png">
   
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
@@ -142,60 +149,256 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CSS盒模型总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/29/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2021-01-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/29/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/">Git语法总结</a>
+    <h1 class="article-title" itemprop="name">
+      CSS盒模型总结
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2021-02-27T13:44:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-27</time>
+</a>
+        
+        <!-- 阅读量统计 -->
+        
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+      
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对盒子模型做个简单概括</p>
+<a id="more"></a>
+
+<h3 id="盒模型类别"><a href="#盒模型类别" class="headerlink" title="盒模型类别"></a>盒模型类别</h3><ol>
+<li><strong>标准盒模型</strong><br><img src="/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png" alt="标准盒模型"><br> 由四个部分组成：</li>
+</ol>
+<ul>
+<li><strong>content box</strong>: 用来显示内容的区域，通过”width”和”height”设置大小</li>
+<li><strong>padding box</strong>: 内边距</li>
+<li><strong>border box</strong>: 边框</li>
+<li><strong>margin box</strong>: 外边距</li>
+</ul>
+<ol start="2">
+<li><strong>替代(IE)盒模型</strong><br><img src="/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E6%9B%BF%E4%BB%A3%E7%9B%92%E6%A8%A1%E5%9E%8B.png" alt="替代盒模型"></li>
+</ol>
+<p>如图可以很直观的看出，替代盒模型相比IE盒模型的区别在于它的width和height等于content + padding + border的宽度。</p>
+<p>可以通过设置<code>box-sizing</code>来设置盒子的类型（默认为标准盒模型）:</p>
+<blockquote>
+<p><code>box-sizing: content-box</code>：标准盒模型</p>
+<p><code>box-sizing: border-box</code>： IE盒模型</p>
+</blockquote>
+<h3 id="padding"><a href="#padding" class="headerlink" title="padding"></a>padding</h3><p>可以整体设置大小，也可以分别各个方向分别设置，如：</p>
+<blockquote>
+<p>padding-top: 30px; </p>
+<p>padding-right: 20px; </p>
+<p>padding-bottom: 40px;</p>
+<p>padding-left: 100px;</p>
+</blockquote>
+<blockquote>
+<p>padding:30px 20px 40px 100px;</p>
+</blockquote>
+<ul>
+<li><p>如果写了四个值，则顺序为：上    右    下    左；</p>
+</li>
+<li><p>如果写了三个值，则顺序为：上    右    下。自动设置左 = 右。</p>
+</li>
+<li><p>如果只写了两个值，如<code>padding: 30px 40px</code>，则等价于<code>padding: 30px 40px 30px 40px</code>;</p>
+</li>
+</ul>
+<p><strong>margin属性设置和padding类似</strong></p>
+<h3 id="border"><a href="#border" class="headerlink" title="border"></a>border</h3><p>border的属性设置顺序为：粗细    类型    颜色：如</p>
+<blockquote>
+<p>border: 1px ridge red</p>
+</blockquote>
+<p><strong>通过border画三角形</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;<span class="selector-tag">title</span>&gt;<span class="selector-tag">Document</span>&lt;/<span class="selector-tag">title</span>&gt;</span><br><span class="line">    &lt;style type = &quot;text/css&quot;&gt;</span><br><span class="line">        <span class="selector-tag">div</span>&#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">            <span class="attribute">border</span>: <span class="number">50px</span> solid green;</span><br><span class="line">            <span class="attribute">border-color</span>: red white white;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">head</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">div</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">body</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">html</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E4%B8%89%E8%A7%92%E5%BD%A2.png" alt="三角形"></p>
+<h3 id="margin纵向重叠"><a href="#margin纵向重叠" class="headerlink" title="margin纵向重叠"></a>margin纵向重叠</h3><ul>
+<li>相邻元素的<code>margin-top</code>和<code>margin-bottom</code>会发生重叠</li>
+<li>空白内容也会重叠</li>
+</ul>
+<p>如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;<span class="selector-tag">title</span>&gt;<span class="selector-tag">Document</span>&lt;/<span class="selector-tag">title</span>&gt;</span><br><span class="line">    &lt;style type = &quot;text/css&quot;&gt;</span><br><span class="line">        <span class="selector-tag">p</span> &#123;</span><br><span class="line">            <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">            <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">            <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span><br><span class="line">            <span class="attribute">margin-bottom</span>: <span class="number">15px</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">head</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">P</span>&gt;<span class="selector-tag">AAA</span>&lt;/<span class="selector-tag">P</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">P</span>&gt;&lt;/<span class="selector-tag">P</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">P</span>&gt;&lt;/<span class="selector-tag">P</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">P</span>&gt;<span class="selector-tag">CCC</span>&lt;/<span class="selector-tag">P</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">body</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">html</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E9%87%8D%E5%8F%A0.png" alt="重叠"></p>
+<h3 id="margin负值"><a href="#margin负值" class="headerlink" title="margin负值"></a>margin负值</h3><ul>
+<li><code>margin-top</code>和<code>margin-left</code>负值，元素向上，向左移动</li>
+<li><code>margin-right</code>负值，右侧元素左移，自身不受影响</li>
+<li><code>margin-bottom</code>负值，下方元素上移，自身不受影响</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ez4yb.cn/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2021/02/22/JavaScript%E5%AE%9E%E7%8E%B0%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript实现二叉搜索树</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%92%E6%A8%A1%E5%9E%8B%E7%B1%BB%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text">盒模型类别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#padding"><span class="toc-number">2.</span> <span class="toc-text">padding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#border"><span class="toc-number">3.</span> <span class="toc-text">border</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#margin%E7%BA%B5%E5%90%91%E9%87%8D%E5%8F%A0"><span class="toc-number">4.</span> <span class="toc-text">margin纵向重叠</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#margin%E8%B4%9F%E5%80%BC"><span class="toc-number">5.</span> <span class="toc-text">margin负值</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -222,9 +425,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
