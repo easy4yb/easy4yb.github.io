@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://ez4yb.cn">
-  <title>Archives: 2021 | 袁斌的博客</title>
+  <title>CSS页面布局总结 | 袁斌的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="就读于华中科技大学电子信息与通信学院">
-<meta property="og:type" content="website">
-<meta property="og:title" content="袁斌的博客">
-<meta property="og:url" content="https://ez4yb.cn/archives/2021/page/2/index.html">
+  <meta name="description" content="CSS页面布局主要通过两种方式实现，Float和Flexbox。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS页面布局总结">
+<meta property="og:url" content="https://ez4yb.cn/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="袁斌的博客">
-<meta property="og:description" content="就读于华中科技大学电子信息与通信学院">
+<meta property="og:description" content="CSS页面布局主要通过两种方式实现，Float和Flexbox。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ez4yb.cn/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/float.png">
+<meta property="og:image" content="https://ez4yb.cn/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/%E6%B8%85%E9%99%A4%E5%89%8D.png">
+<meta property="og:image" content="https://ez4yb.cn/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/%E6%B8%85%E9%99%A4%E5%90%8E.png">
+<meta property="article:published_time" content="2021-03-04T14:04:29.000Z">
+<meta property="article:modified_time" content="2021-03-25T14:45:55.985Z">
 <meta property="article:author" content="袁斌">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ez4yb.cn/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/float.png">
   
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
@@ -134,231 +140,235 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CSS页面布局总结" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS页面布局总结
+    </h1>
+  
+
+        
+        <a href="/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2021-03-04T14:04:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-04</time>
+</a>
+        
+        <!-- 阅读量统计 -->
+        
+          <span class="archive-article-date">
+              阅读量 <span id="busuanzi_value_page_pv"></span>
+          </span>
+      
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CSS页面布局主要通过两种方式实现，<strong>Float</strong>和<strong>Flexbox</strong>。</p>
+<a id="more"></a>
+
+<h3 id="Float"><a href="#Float" class="headerlink" title="Float"></a>Float</h3><p>浮动布局可以使元素脱离正常流，块级元素会忽略浮动元素，而行内元素会环绕浮动元素。下面是一个简单的例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">&#x27;border&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">&#x27;float_lightcoral&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">&#x27;normal_red&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">&#x27;float_blue&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        我的名字叫吉良吉影，33岁。住在杜王町东北部的别墅区一带，未婚。我在龟友连锁店服务。每天都要加班到晚上8点才能回家。我不抽烟，酒仅止于浅尝。晚上11点睡，每天要睡足8个小时。睡前，我一定喝一杯温牛奶，然后做20分钟的放松体操，上了床，马上熟睡。一觉到天亮，决不把疲劳和压力，留到第二天。医生都说我很正常.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.border</span>&#123;</span><br><span class="line">            <span class="attribute">border</span>:<span class="number">1px</span> black solid;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.float_lightcoral</span>&#123;</span><br><span class="line">            <span class="attribute">float</span>: left;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: lightcoral;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.float_blue</span>&#123;</span><br><span class="line">            <span class="attribute">float</span>: left;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: blue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.normal_red</span>&#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">160px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: red;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<p><img src="/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/float.png" alt="float布局"></p>
+<p>由图可见，红色块级元素忽略了浮动元素，排在左上角，但是一部分被粉色浮动元素遮挡。而行内元素，即文字部分，受到蓝色浮动元素的影响，环绕其展开。</p>
+<h4 id="float可设置的值"><a href="#float可设置的值" class="headerlink" title="float可设置的值"></a><strong>float</strong>可设置的值</h4><blockquote>
+<p><code>left</code>：元素向左浮动</p>
+<p><code>right</code>：元素向右浮动</p>
+<p><code>none</code>：默认值，不浮动</p>
+<p><code>inherit</code>：从父元素继承浮动值</p>
+</blockquote>
+<h4 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h4><p>因为浮动元素不能撑开包含块，有时需要清楚浮动以使元素正常显示。其方法主要有两种：</p>
+<h5 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h5><p><a href="https://ez4yb.cn/2021/03/03/BFC%E6%80%BB%E7%BB%93/#more">如前所述</a></p>
+<h5 id="clearfix"><a href="#clearfix" class="headerlink" title="clearfix"></a>clearfix</h5><p>其原理是给元素尾部设置一个内容为空的伪类，并清除浮动，以撑开包含块。下面是个简单的例子：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: green;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.footer</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如图：</p>
+<p><img src="/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/%E6%B8%85%E9%99%A4%E5%89%8D.png" alt="清除前"></p>
+<p>由图可见，为了使布局正常显示，footer应该被撑开，排列在最下面。</p>
+<p>遂给<code>container</code>添加<code>clearfix</code>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container clearfix&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>效果：</p>
+<p><img src="/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/%E6%B8%85%E9%99%A4%E5%90%8E.png" alt="清除后"></p>
+<h3 id="Flexbox"><a href="#Flexbox" class="headerlink" title="Flexbox"></a>Flexbox</h3>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我咖啡<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wechat.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/14/JavaScript%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2021-02-13T23:30:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/14/JavaScript%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8/">JavaScript实现链表</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">CSS</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://ez4yb.cn/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/13/JavaScript%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" class="archive-article-date">
-  	<time datetime="2021-02-13T01:22:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-13</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/03/07/%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E3%80%81%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          行内元素、块级元素
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/03/BFC%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">BFC总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/13/JavaScript%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">JavaScript实现队列</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Float"><span class="toc-number">1.</span> <span class="toc-text">Float</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#float%E5%8F%AF%E8%AE%BE%E7%BD%AE%E7%9A%84%E5%80%BC"><span class="toc-number">1.1.</span> <span class="toc-text">float可设置的值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8"><span class="toc-number">1.2.</span> <span class="toc-text">清除浮动</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#BFC"><span class="toc-number">1.2.1.</span> <span class="toc-text">BFC</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#clearfix"><span class="toc-number">1.2.2.</span> <span class="toc-text">clearfix</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Flexbox"><span class="toc-number">2.</span> <span class="toc-text">Flexbox</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/" class="archive-article-date">
-  	<time datetime="2021-02-09T14:34:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-09</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/">JavaScript实现栈</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/29/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2021-01-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/29/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/">Git语法总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/01/29/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2021-01-28T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/01/29/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">Markdown语法总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Markdown</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Typora</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -386,8 +396,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
