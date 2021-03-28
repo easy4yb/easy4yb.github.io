@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>BFC总结</title>
+    <url>/2021/03/03/BFC%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>BFC的理解与应用</p>
+<a id="more"></a>
+
+<h3 id="BFC简介"><a href="#BFC简介" class="headerlink" title="BFC简介"></a>BFC简介</h3><p><strong>BFC</strong>（Block format context， 块级格式化上下文)，它是页面中一块独立的渲染区域，内部元素的渲染不会影响边界外部的元素。</p>
+<h3 id="触发BFC"><a href="#触发BFC" class="headerlink" title="触发BFC"></a>触发BFC</h3><p>只要元素满足下列任一条件即可触发BFC：</p>
+<ul>
+<li><code>body</code>根元素</li>
+<li><code>float</code>是<code>none</code>以外的值</li>
+<li><code>position</code>是<code>absolute</code>或<code>fixed</code></li>
+<li><code>overflow</code>是<code>visible</code>以外的值<code>(hidden, auto, scroll)</code></li>
+<li><code>display</code>是<code>inline-block</code>, <code>flex</code>或<code>table-cells</code></li>
+</ul>
+<h3 id="BFC应用"><a href="#BFC应用" class="headerlink" title="BFC应用"></a>BFC应用</h3><p>1.通过把相邻元素放在不同BFC中，可以清除外边距折叠</p>
+<p>2.清楚浮动</p>
+]]></content>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS定位总结</title>
+    <url>/2021/03/17/CSS%E5%AE%9A%E4%BD%8D%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>CSS的定位方式由position元素的设置决定</p>
+<a id="more"></a>
+
+<p><strong>position</strong>属性可以设定的值有：</p>
+<ul>
+<li>static</li>
+<li>relative</li>
+<li>absolute</li>
+<li>fixed</li>
+<li>sticky</li>
+</ul>
+<h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p><code>static</code>是position属性的默认值，浏览器会按照源码的顺序，决定每个元素的位置，这称为“正常流”(Normal flow)。</p>
+<h4 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h4><p>表示元素相对于默认位置(即static)偏移，可以由<code>left</code>、<code>right</code>、<code>top</code>、<code>bottom</code>控制偏移量</p>
+<h4 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h4><p>表示元素相对于父元素偏移，且改父元素不能是<code>static</code>定位，否则定位基点就会变成整个网页的根元素<code>html</code>。和relative类似，absolute定位也需用<code>left</code>、<code>right</code>、<code>top</code>、<code>bottom</code>控制偏移量</p>
+<blockquote>
+<p>absolute定位的元素会被“正常流”忽略，即在正常流中，该元素所占空间为零</p>
+</blockquote>
+<h4 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h4><p>表示元素相对于浏览器窗口绝对定位</p>
+<h4 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h4><p>sticky定位可以使元素呈现“动态固定”的效果，当父元素开始脱离视窗时，只要与sticky元素的距离达到生效门槛，元素定位从relative自动切换为fixed；等父元素完全脱离视窗时，元素定位从fixed自动切换为relative</p>
+]]></content>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS页面布局总结</title>
+    <url>/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>CSS页面布局主要通过两种方式实现，<strong>Float</strong>和<strong>Flexbox</strong>。</p>
+<a id="more"></a>
+
+<h3 id="Float"><a href="#Float" class="headerlink" title="Float"></a>Float</h3><p>浮动布局可以使元素脱离正常流，块级元素会忽略浮动元素，而行内元素会环绕浮动元素。下面是一个简单的例子：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">&#x27;border&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">&#x27;float_lightcoral&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">&#x27;normal_red&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span> = <span class="string">&#x27;float_blue&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        我的名字叫吉良吉影，33岁。住在杜王町东北部的别墅区一带，未婚。我在龟友连锁店服务。每天都要加班到晚上8点才能回家。我不抽烟，酒仅止于浅尝。晚上11点睡，每天要睡足8个小时。睡前，我一定喝一杯温牛奶，然后做20分钟的放松体操，上了床，马上熟睡。一觉到天亮，决不把疲劳和压力，留到第二天。医生都说我很正常.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.border</span>&#123;</span><br><span class="line">            <span class="attribute">border</span>:<span class="number">1px</span> black solid;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.float_lightcoral</span>&#123;</span><br><span class="line">            <span class="attribute">float</span>: left;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: lightcoral;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.float_blue</span>&#123;</span><br><span class="line">            <span class="attribute">float</span>: left;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: blue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-class">.normal_red</span>&#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">160px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: red;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<p><img src="/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/float.png" alt="float布局"></p>
+<p>由图可见，红色块级元素忽略了浮动元素，排在左上角，但是一部分被粉色浮动元素遮挡。而行内元素，即文字部分，受到蓝色浮动元素的影响，环绕其展开。</p>
+<h4 id="float可设置的值"><a href="#float可设置的值" class="headerlink" title="float可设置的值"></a><strong>float</strong>可设置的值</h4><blockquote>
+<p><code>left</code>：元素向左浮动</p>
+<p><code>right</code>：元素向右浮动</p>
+<p><code>none</code>：默认值，不浮动</p>
+<p><code>inherit</code>：从父元素继承浮动值</p>
+</blockquote>
+<h4 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h4><p>因为浮动元素不能撑开包含块，有时需要清楚浮动以使元素正常显示。其方法主要有两种：</p>
+<h5 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h5><p><a href="https://ez4yb.cn/2021/03/03/BFC%E6%80%BB%E7%BB%93/#more">如前所述</a></p>
+<h5 id="clearfix"><a href="#clearfix" class="headerlink" title="clearfix"></a>clearfix</h5><p>其原理是给元素尾部设置一个内容为空的伪类，并清除浮动，以撑开包含块。下面是个简单的例子：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: black;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: green;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.footer</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>效果如图：</p>
+<p><img src="/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/%E6%B8%85%E9%99%A4%E5%89%8D.png" alt="清除前"></p>
+<p>由图可见，为了使布局正常显示，footer应该被撑开，排列在最下面。</p>
+<p>遂给<code>container</code>添加<code>clearfix</code>：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container clearfix&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;left&quot;</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;right&quot;</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;footer&quot;</span>&gt;</span>footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.container</span><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">clear</span>: both;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>效果：</p>
+<p><img src="/2021/03/04/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/%E6%B8%85%E9%99%A4%E5%90%8E.png" alt="清除后"></p>
+<h3 id="Flexbox"><a href="#Flexbox" class="headerlink" title="Flexbox"></a>Flexbox</h3>]]></content>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CSS盒模型总结</title>
+    <url>/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>对盒子模型做个简单概括</p>
+<a id="more"></a>
+
+<h3 id="盒模型类别"><a href="#盒模型类别" class="headerlink" title="盒模型类别"></a>盒模型类别</h3><ol>
+<li><strong>标准盒模型</strong><br><img src="/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B.png" alt="标准盒模型"><br> 由四个部分组成：</li>
+</ol>
+<ul>
+<li><strong>content box</strong>: 用来显示内容的区域，通过”width”和”height”设置大小</li>
+<li><strong>padding box</strong>: 内边距</li>
+<li><strong>border box</strong>: 边框</li>
+<li><strong>margin box</strong>: 外边距</li>
+</ul>
+<ol start="2">
+<li><strong>替代(IE)盒模型</strong><br><img src="/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E6%9B%BF%E4%BB%A3%E7%9B%92%E6%A8%A1%E5%9E%8B.png" alt="替代盒模型"></li>
+</ol>
+<p>如图可以很直观的看出，替代盒模型相比IE盒模型的区别在于它的width和height等于content + padding + border的宽度。</p>
+<p>可以通过设置<code>box-sizing</code>来设置盒子的类型（默认为标准盒模型）:</p>
+<blockquote>
+<p><code>box-sizing: content-box</code>：标准盒模型</p>
+<p><code>box-sizing: border-box</code>： IE盒模型</p>
+</blockquote>
+<h3 id="padding"><a href="#padding" class="headerlink" title="padding"></a>padding</h3><p>可以整体设置大小，也可以分别各个方向分别设置，如：</p>
+<blockquote>
+<p>padding-top: 30px; </p>
+<p>padding-right: 20px; </p>
+<p>padding-bottom: 40px;</p>
+<p>padding-left: 100px;</p>
+</blockquote>
+<blockquote>
+<p>padding:30px 20px 40px 100px;</p>
+</blockquote>
+<ul>
+<li><p>如果写了四个值，则顺序为：上    右    下    左；</p>
+</li>
+<li><p>如果写了三个值，则顺序为：上    右    下。自动设置左 = 右。</p>
+</li>
+<li><p>如果只写了两个值，如<code>padding: 30px 40px</code>，则等价于<code>padding: 30px 40px 30px 40px</code>;</p>
+</li>
+</ul>
+<p><strong>margin属性设置和padding类似</strong></p>
+<h3 id="border"><a href="#border" class="headerlink" title="border"></a>border</h3><p>border的属性设置顺序为：粗细    类型    颜色：如</p>
+<blockquote>
+<p>border: 1px ridge red</p>
+</blockquote>
+<p><strong>通过border画三角形</strong></p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;<span class="selector-tag">title</span>&gt;<span class="selector-tag">Document</span>&lt;/<span class="selector-tag">title</span>&gt;</span><br><span class="line">    &lt;style type = &quot;text/css&quot;&gt;</span><br><span class="line">        <span class="selector-tag">div</span>&#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">0px</span>;</span><br><span class="line">            <span class="attribute">border</span>: <span class="number">50px</span> solid;</span><br><span class="line">            <span class="attribute">border-color</span>: red white white;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">head</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">div</span>&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">body</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">html</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E4%B8%89%E8%A7%92%E5%BD%A2.png" alt="三角形"></p>
+<h3 id="margin纵向重叠"><a href="#margin纵向重叠" class="headerlink" title="margin纵向重叠"></a>margin纵向重叠</h3><ul>
+<li>相邻元素的<code>margin-top</code>和<code>margin-bottom</code>会发生重叠</li>
+<li>空白内容也会重叠</li>
+</ul>
+<p>如：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;<span class="selector-tag">title</span>&gt;<span class="selector-tag">Document</span>&lt;/<span class="selector-tag">title</span>&gt;</span><br><span class="line">    &lt;style type = &quot;text/css&quot;&gt;</span><br><span class="line">        <span class="selector-tag">p</span> &#123;</span><br><span class="line">            <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">            <span class="attribute">line-height</span>: <span class="number">1</span>;</span><br><span class="line">            <span class="attribute">margin-top</span>: <span class="number">10px</span>;</span><br><span class="line">            <span class="attribute">margin-bottom</span>: <span class="number">15px</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/<span class="selector-tag">style</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">head</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">P</span>&gt;<span class="selector-tag">AAA</span>&lt;/<span class="selector-tag">P</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">P</span>&gt;&lt;/<span class="selector-tag">P</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">P</span>&gt;&lt;/<span class="selector-tag">P</span>&gt;</span><br><span class="line">    &lt;<span class="selector-tag">P</span>&gt;<span class="selector-tag">CCC</span>&lt;/<span class="selector-tag">P</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">body</span>&gt;</span><br><span class="line">&lt;/<span class="selector-tag">html</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="/2021/02/27/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%80%BB%E7%BB%93/%E9%87%8D%E5%8F%A0.png" alt="重叠"></p>
+<h3 id="margin负值"><a href="#margin负值" class="headerlink" title="margin负值"></a>margin负值</h3><ul>
+<li><code>margin-top</code>和<code>margin-left</code>负值，元素向上，向左移动</li>
+<li><code>margin-right</code>负值，右侧元素左移，自身不受影响</li>
+<li><code>margin-bottom</code>负值，下方元素上移，自身不受影响</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git语法总结</title>
+    <url>/2021/01/29/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>​        以一张思维导图的形式对Git常用指令做个概括</p>
+<a id="more"></a>
+
+<p><img src="/2021/01/29/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93.png" alt="Git常用指令总结"></p>
+]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript实现二叉搜索树</title>
+    <url>/2021/02/22/JavaScript%E5%AE%9E%E7%8E%B0%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
+    <content><![CDATA[<p>使用JavaScript实现二叉搜索树(施工中)</p>
+<a id="more"></a>
+
+<h4 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h4><p>一个非空的二叉搜索树（BST，Binary Search Tree）满足以下性质：</p>
+<ul>
+<li>非空左子树的所有键值均小于其根节点的键值</li>
+<li>非空右子树的所有键值均大于其根节点的键值</li>
+<li>左，右子树本身也是二叉搜索树</li>
+</ul>
+<p>因此，树中相对较小的值总保存在左节点上，相对较大的值总保存在右节点上。这样一来，在二叉搜索树中查找一个值，其实是模仿了二分查找法，可以很大程度地提升效率。</p>
+<h4 id="二叉搜索树的操作"><a href="#二叉搜索树的操作" class="headerlink" title="二叉搜索树的操作"></a>二叉搜索树的操作</h4><ul>
+<li><code>insert(key)</code>：向树中插入一个新的键。</li>
+<li><code>search(key)</code>：在书中查找一个键，存在返回true，不存在则返回false。</li>
+<li><code>inOrderTraversal()</code>： 中序遍历所有节点</li>
+<li><code>preOrderTraversal()</code>： 先序遍历所有节点</li>
+<li><code>postOrderTraversal()</code>： 后序遍历所有节点</li>
+<li><code>min()</code>： 返回树中最小的键值</li>
+<li><code>max()</code>： 返回树中最大的键值</li>
+<li><code>remove(key)</code>： 从树中移除某个键</li>
+</ul>
+<h4 id="二叉搜索树的实现"><a href="#二叉搜索树的实现" class="headerlink" title="二叉搜索树的实现"></a>二叉搜索树的实现</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript实现哈希表</title>
+    <url>/2021/02/19/JavaScript%E5%AE%9E%E7%8E%B0%E5%93%88%E5%B8%8C%E8%A1%A8/</url>
+    <content><![CDATA[<p>使用JavaScript通过链地址法实现哈希表</p>
+<a id="more"></a>
+
+<h4 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h4><p>对于哈希表的介绍，一言难尽，反正前人之述备矣，我就先把代码贴上吧，以后有机会再回来总结哈希表。</p>
+<h4 id="哈希表实现"><a href="#哈希表实现" class="headerlink" title="哈希表实现"></a>哈希表实现</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HashTable</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">    <span class="built_in">this</span>.storage = [];</span><br><span class="line">    <span class="built_in">this</span>.count = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">this</span>.limit = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="comment">//哈希函数</span></span><br><span class="line">    HashTable.prototype.hasFunc = <span class="function"><span class="keyword">function</span>(<span class="params">str, size</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> hashcode = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.length; i++)&#123;</span><br><span class="line">            hashcode = <span class="number">37</span> * hashcode + str.charCodeAt(i)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> index = hashcode % size;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断是否为质数</span></span><br><span class="line">    HashTable.prototype.isPrime = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(num &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= <span class="built_in">Math</span>.sqrt(num); i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(num % i == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入与修改</span></span><br><span class="line">    HashTable.prototype.put = <span class="function"><span class="keyword">function</span>(<span class="params">key, value</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//根据key获取index</span></span><br><span class="line">        <span class="keyword">let</span> index = <span class="built_in">this</span>.hasFunc(key, <span class="built_in">this</span>.limit);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//根据index获取bucket</span></span><br><span class="line">        <span class="keyword">let</span> bucket = <span class="built_in">this</span>.storage[index];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断bucket是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(!bucket)&#123;</span><br><span class="line">            bucket = [];</span><br><span class="line">            <span class="built_in">this</span>.storage[index] = bucket;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断是否是修改数据</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">            <span class="keyword">if</span>(tuple[<span class="number">0</span>] == key)&#123;</span><br><span class="line">                tuple[<span class="number">1</span>] = value;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行添加操作</span></span><br><span class="line">        bucket.push([key, value]);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.count++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断是否需要扩容</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.count &gt; <span class="number">0.75</span> * <span class="built_in">this</span>.limit)&#123;</span><br><span class="line">            <span class="keyword">let</span> newLimit = <span class="built_in">this</span>.limit * <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">while</span>(!<span class="built_in">this</span>.isPrime(newLimit))&#123;</span><br><span class="line">                newLimit++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">this</span>.resize(newLimit);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取</span></span><br><span class="line">    HashTable.prototype.get = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//根据key获取index</span></span><br><span class="line">        <span class="keyword">let</span> index = <span class="built_in">this</span>.hasFunc(key, <span class="built_in">this</span>.limit);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//根据index获取bucket</span></span><br><span class="line">        <span class="keyword">let</span> bucket = <span class="built_in">this</span>.storage[index];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断bucket是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(!bucket)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//查找key</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">            <span class="keyword">if</span>(tuple[<span class="number">0</span>] == key)&#123;</span><br><span class="line">                <span class="keyword">return</span> tuple[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除</span></span><br><span class="line">    HashTable.prototype.remove = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//根据key获取index</span></span><br><span class="line">        <span class="keyword">let</span> index = <span class="built_in">this</span>.hasFunc(key, <span class="built_in">this</span>.limit);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//根据index获取bucket</span></span><br><span class="line">        <span class="keyword">let</span> bucket = <span class="built_in">this</span>.storage[index];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断bucket是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(!bucket)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//查找key并删除</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">            <span class="keyword">if</span>(tuple[<span class="number">0</span>] == key)&#123;</span><br><span class="line">                bucket.splice(i, <span class="number">1</span>);</span><br><span class="line">                <span class="built_in">this</span>.count--;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//判断是否需要缩小容量</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">this</span>.count &gt; <span class="number">7</span> &amp;&amp; <span class="built_in">this</span>.count &lt; <span class="number">0.25</span> * <span class="built_in">this</span>.limit)&#123;</span><br><span class="line">                    <span class="keyword">let</span> newLimit = <span class="built_in">Math</span>.floor(<span class="built_in">this</span>.limit/<span class="number">2</span>);</span><br><span class="line">                    <span class="keyword">while</span>(!<span class="built_in">this</span>.isPrime(newLimit))&#123;</span><br><span class="line">                        newLimit++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="built_in">this</span>.resize(newLimit);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断是否为空</span></span><br><span class="line">    HashTable.prototype.isEmpty = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.count == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取元素个数</span></span><br><span class="line">    HashTable.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//扩容</span></span><br><span class="line">    HashTable.prototype.resize = <span class="function"><span class="keyword">function</span> (<span class="params">newLimit</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//保留旧的数组内容</span></span><br><span class="line">        <span class="keyword">let</span> oldStorage = <span class="built_in">this</span>.storage;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//重置所有属性</span></span><br><span class="line">        <span class="built_in">this</span>.storage = [];</span><br><span class="line">        <span class="built_in">this</span>.count = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">this</span>.limit = newLimit;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历旧数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; oldStorage.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> bucket = oldStorage[i];</span><br><span class="line">            <span class="keyword">if</span>(bucket == <span class="literal">null</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; bucket.length; j++)&#123;</span><br><span class="line">                    <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">                    <span class="built_in">this</span>.put(tuple[<span class="number">0</span>], tuple[<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript实现栈</title>
+    <url>/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/</url>
+    <content><![CDATA[<p>使用JavaScriot实现栈结构（数组方式）</p>
+<a id="more"></a>
+
+<h3 id="栈结构"><a href="#栈结构" class="headerlink" title="栈结构"></a>栈结构</h3><p>栈是一种“运算受限”的线性表，其特点为：</p>
+<ul>
+<li>LIFO（last in first out），即后入栈的元素，将会先弹出栈空间，类似把很多碟子垒在一起，后放上去的必须先拿出来</li>
+</ul>
+<p><strong>如图所示：</strong></p>
+<p><img src="/2021/02/09/JavaScript%E5%AE%9E%E7%8E%B0%E6%A0%88/Stack.jpg" alt="栈结构图示"></p>
+<ol>
+<li>向一个栈插入新元素又称作进栈，入栈或压栈，它是把新元素放到栈顶元素的上面，使之成为新的栈顶元素</li>
+<li>从一个栈删除元素又称作出栈或退栈，它是把栈顶元素删除掉，使其相邻的元素成为新的栈顶元素。</li>
+</ol>
+<h3 id="栈结构常见操作"><a href="#栈结构常见操作" class="headerlink" title="栈结构常见操作"></a>栈结构常见操作</h3><ul>
+<li><p><code>push(element)</code>:  添加一个新元素到栈顶位置.</p>
+</li>
+<li><p><code>pop()</code>：移除栈顶的元素，同时返回被移除的元素。</p>
+</li>
+<li><p><code>peek()</code>：返回栈顶的元素，不对栈做任何修改（这个方法不会移除栈顶的元素，仅仅返回它）。</p>
+</li>
+<li><p><code>isEmpty()</code>：如果栈里没有任何元素就返回<code>true</code>，否则返回<code>false</code>。</p>
+</li>
+<li><p><code>clear()</code>：移除栈里的所有元素。</p>
+</li>
+<li><p><code>size()</code>：返回栈里的元素个数。这个方法和数组的<code>length</code>属性很类似。</p>
+</li>
+</ul>
+<h3 id="栈的实现"><a href="#栈的实现" class="headerlink" title="栈的实现"></a>栈的实现</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//创建栈</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//栈中的属性</span></span><br><span class="line">    <span class="built_in">this</span>.items = []; </span><br><span class="line">    <span class="comment">//栈中的方法</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//添加一个新元素到栈顶位置</span></span><br><span class="line">    Stack.prototype.push = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//借用数组的push()方法</span></span><br><span class="line">        <span class="built_in">this</span>.items.push(element);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//移除栈顶的元素，同时返回被移除的元素</span></span><br><span class="line">    Stack.prototype.pop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//借用数组的pop()方法</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//返回栈顶的元素，不对栈做任何修改</span></span><br><span class="line">    Stack.prototype.peek = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items[<span class="built_in">this</span>.items.length - <span class="number">1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//如果栈里没有任何元素就返回true，否则返回false</span></span><br><span class="line">    Stack.prototype.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">this</span>.items.length == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//移除栈里的所有元素</span></span><br><span class="line">    Stack.prototype.clear = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.items = [];</span><br><span class="line">        <span class="comment">//也可以通过多次调用pop()</span></span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="comment">//返回栈里的元素个数</span></span><br><span class="line">    Stack.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items.length;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//重写toString方法</span></span><br><span class="line">    Stack.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> newString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.items.length; i++)&#123;</span><br><span class="line">            s += <span class="built_in">this</span>.items[i] + <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newString;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="栈的应用"><a href="#栈的应用" class="headerlink" title="栈的应用"></a>栈的应用</h3><h5 id="十进制转化为二进制"><a href="#十进制转化为二进制" class="headerlink" title="十进制转化为二进制"></a>十进制转化为二进制</h5><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//十进制转化为二进制（decimal to binary)</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dec2bin</span>(<span class="params">decNumber</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> stack = <span class="keyword">new</span> Stack();</span><br><span class="line">    <span class="keyword">let</span> decNum = decNumber;</span><br><span class="line">    <span class="keyword">while</span>(decNum)&#123;</span><br><span class="line">        <span class="comment">//把decNum除以2的余数压入栈</span></span><br><span class="line">        stack.push(decNum % <span class="number">2</span>);</span><br><span class="line">       	<span class="comment">//更新decNum为其除以2向下取整的结果</span></span><br><span class="line">        decNum = <span class="built_in">Math</span>.floor(decNum/<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> binString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">while</span>(!stack.isEmpty())&#123;</span><br><span class="line">        binString += stack.pop();</span><br><span class="line">    &#125;	        </span><br><span class="line">    <span class="keyword">return</span> binString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript实现链表</title>
+    <url>/2021/02/14/JavaScript%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8/</url>
+    <content><![CDATA[<p>使用JavaScript实现链表以及双向链表</p>
+<a id="more"></a>
+
+<h4 id="链表结构"><a href="#链表结构" class="headerlink" title="链表结构"></a>链表结构</h4><p>​    链表是一组节点组成的集合，每个节点都使用一个对象的引用来指向后一个节点。如图：</p>
+<p><img src="/2021/02/14/JavaScript%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8/LinkedList.jpg" alt="链表图示"></p>
+<h4 id="链表对比数组"><a href="#链表对比数组" class="headerlink" title="链表对比数组"></a>链表对比数组</h4><ul>
+<li>优点</li>
+</ul>
+<ol>
+<li>链表内存空间不是必须是连续的，可以充分利用计算机内存空间。</li>
+<li>链表不必再创建时就设定大小，并且大小可以无限的延申下去。</li>
+<li>链表在插入和删除数据时，时间复杂度可以达到O(1)，效率相对数组高很多</li>
+</ol>
+<ul>
+<li>缺点</li>
+</ul>
+<ol>
+<li>链表访问任何一个位置的元素时，都学要从头开始访问，无法通过下标直接访问元素</li>
+</ol>
+<h4 id="链表实现"><a href="#链表实现" class="headerlink" title="链表实现"></a>链表实现</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//封装链表</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">LinkedList</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//封装Node类作为节点</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">        <span class="built_in">this</span>.next = <span class="literal">null</span>;       </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">    <span class="built_in">this</span>.length = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">this</span>.head = <span class="literal">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="comment">//向链表尾部添加一个新的项</span></span><br><span class="line">    LinkedList.prototype.apend = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.head == <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="built_in">this</span>.head = newNode;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;            </span><br><span class="line">            <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">            <span class="keyword">while</span>(current.next)&#123;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125;</span><br><span class="line">            current.next = newNode;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">this</span>.length++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//向链表的特定位置插入一个新的项</span></span><br><span class="line">    LinkedList.prototype.insert = <span class="function"><span class="keyword">function</span> (<span class="params">positon, data</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//越界判断</span></span><br><span class="line">        <span class="keyword">if</span>(positon &lt; <span class="number">0</span> || positon &gt; <span class="built_in">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(data);</span><br><span class="line">            <span class="comment">//判断链表是否为空</span></span><br><span class="line">            <span class="keyword">if</span>(!<span class="built_in">this</span>.head)&#123;</span><br><span class="line">                <span class="built_in">this</span>.head = newNode;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">                <span class="keyword">let</span> previous = <span class="literal">null</span>;</span><br><span class="line">                <span class="keyword">if</span>(positon == <span class="number">0</span>)&#123;</span><br><span class="line">                    newNode.next = current;</span><br><span class="line">                    <span class="built_in">this</span>.head = newNode;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">while</span>(i++ &lt; positon)&#123;</span><br><span class="line">                        previous = current;</span><br><span class="line">                        current = current.next;</span><br><span class="line">                    &#125;</span><br><span class="line">                    newNode.next = current;</span><br><span class="line">                    previous.next = newNode;</span><br><span class="line">                &#125;                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.length++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取对应位置的元素</span></span><br><span class="line">    LinkedList.prototype.get = <span class="function"><span class="keyword">function</span> (<span class="params">position</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(position &lt; <span class="number">0</span> || position &gt; <span class="built_in">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; position; i++)&#123;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> current;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回元素在列表中的索引，如果链表中没有该元素则返回-1</span></span><br><span class="line">    LinkedList.prototype.indexOf = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            <span class="keyword">if</span>(current.data == data)&#123;</span><br><span class="line">                <span class="keyword">return</span> index;</span><br><span class="line">            &#125;</span><br><span class="line">            index++;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//修改某个位置的元素</span></span><br><span class="line">    LinkedList.prototype.update = <span class="function"><span class="keyword">function</span>(<span class="params">position, data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="built_in">this</span>.get(position);</span><br><span class="line">        current.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">//从链表的特定位置移除一项</span></span><br><span class="line">    LinkedList.prototype.removeAt = <span class="function"><span class="keyword">function</span>(<span class="params">position</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(position &lt; <span class="number">0</span> || position &gt; <span class="built_in">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> previous = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">        <span class="keyword">let</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(position == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">this</span>.head = current.next;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(i++ &lt; position)&#123;</span><br><span class="line">                previous = current;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125;</span><br><span class="line">            previous.next = current.next;</span><br><span class="line">            current.next = previous.next;   </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.length--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//从链表中移除一项</span></span><br><span class="line">    LinkedList.prototype.remove = <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.removeAt(<span class="built_in">this</span>.indexOf(data));</span><br><span class="line">        <span class="built_in">this</span>.length--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果链表中不包含任何元素，返回true，否则返回false</span></span><br><span class="line">    LinkedList.prototype.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回链表包含的元素个数</span></span><br><span class="line">    LinkedList.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//由于链表项使用了Node类，就需要重写继承自Javascript对象默认的toString方法，让其只输出元素的值</span></span><br><span class="line">    LinkedList.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">        <span class="keyword">var</span> listString = <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            listString += <span class="string">&#x27; &#x27;</span> + current.data;</span><br><span class="line">            current = current.next</span><br><span class="line">            <span class="built_in">this</span>.length++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> listString;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h4><ul>
+<li><p>单向链表</p>
+<ul>
+<li>只能从头遍历到尾或者从尾遍历到头</li>
+<li>可以轻松地到达下一个节点，但是回到前一个节点是很难地</li>
+</ul>
+</li>
+<li><p>双向链表</p>
+<ul>
+<li>既可以从头遍历到尾，也可从尾遍历到头</li>
+<li>一个节点既有向前遍历的节点，也有向后遍历的节点</li>
+<li>每次加入或删除节点时，需要处理四个节点的引用，实现起来更加复杂</li>
+<li>相比于单向链表，占用内存空间更大</li>
+</ul>
+</li>
+</ul>
+<p><strong>图示</strong>：</p>
+<p><img src="/2021/02/14/JavaScript%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8/DoublyLinkedList.jpg" alt="双向链表"></p>
+<h4 id="双向链表实现"><a href="#双向链表实现" class="headerlink" title="双向链表实现"></a>双向链表实现</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">DoublyLinkedList</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//构建Node类</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Node</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.element = element;</span><br><span class="line">        <span class="built_in">this</span>.prev = <span class="literal">null</span>;</span><br><span class="line">        <span class="built_in">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">this</span>.head = <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>.tail = <span class="literal">null</span>;</span><br><span class="line">    <span class="built_in">this</span>.length = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//向链表尾部添加一个新的项</span></span><br><span class="line">    DoublyLinkedList.prototype.apend = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(element);</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">this</span>.head = newNode;</span><br><span class="line">            <span class="built_in">this</span>.tail = newNode;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.tail.next = newNode;</span><br><span class="line">            newNode.prev = <span class="built_in">this</span>.tail;</span><br><span class="line">            <span class="built_in">this</span>.tail = newNode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.length++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//向链表的特定位置添加一个新的项</span></span><br><span class="line">    DoublyLinkedList.prototype.insert = <span class="function"><span class="keyword">function</span>(<span class="params">position, element</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> newNode = <span class="keyword">new</span> Node(element);</span><br><span class="line">        <span class="comment">//越界判断</span></span><br><span class="line">        <span class="keyword">if</span>(position &lt; <span class="number">0</span> || position &gt; <span class="built_in">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//链表为空的情况</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">this</span>.length == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">this</span>.head = newNode;</span><br><span class="line">                <span class="built_in">this</span>.tail = newNode;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(position &lt; <span class="built_in">this</span>.length/<span class="number">2</span>)&#123;</span><br><span class="line">                <span class="comment">//插入位置为0的情况</span></span><br><span class="line">                <span class="keyword">if</span>(position == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="built_in">this</span>.head.prev = newNode;</span><br><span class="line">                    newNode.next = <span class="built_in">this</span>.head;</span><br><span class="line">                    <span class="built_in">this</span>.head = newNode;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="comment">//插入位置为链表前半段的情况</span></span><br><span class="line">                    <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; position; i++)&#123;</span><br><span class="line">                        current = current.next;</span><br><span class="line">                    &#125;</span><br><span class="line">                    current.prev.next = newNode;</span><br><span class="line">                    newNode.prev = current.prev;</span><br><span class="line">                    current.prev = newNode;</span><br><span class="line">                    newNode.next = current;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(position == <span class="built_in">this</span>.length)&#123;</span><br><span class="line">                <span class="comment">//插入位置为尾部的情况</span></span><br><span class="line">                newNode.prev = <span class="built_in">this</span>.tail;</span><br><span class="line">                <span class="built_in">this</span>.tail.next = newNode;</span><br><span class="line">                <span class="built_in">this</span>.tail = newNode;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//插入位置为后半段的情况</span></span><br><span class="line">                <span class="keyword">let</span> current = <span class="built_in">this</span>.tail;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="built_in">this</span>.length; i &gt; position; i--)&#123;</span><br><span class="line">                    current = current.prev;</span><br><span class="line">                &#125;</span><br><span class="line">                current.next.prev = newNode;</span><br><span class="line">                newNode.next = current.next;</span><br><span class="line">                current.next = newNode;</span><br><span class="line">                newNode.prev = current;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.length++;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取对应位置的元素</span></span><br><span class="line">    DoublyLinkedList.prototype.get = <span class="function"><span class="keyword">function</span>(<span class="params">position</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//越界判断</span></span><br><span class="line">        <span class="keyword">if</span>(position &lt; <span class="number">0</span> || position &gt; <span class="built_in">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; position; i++)&#123;</span><br><span class="line">                    current = current.next;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> current.element;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回元素在链表中的索引，如果没有则返回-1</span></span><br><span class="line">    DoublyLinkedList.prototype.indexOf = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">        <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(current)</span><br><span class="line">        &#123;</span><br><span class="line">            index++;</span><br><span class="line">            <span class="keyword">if</span>(current.element == element)&#123;</span><br><span class="line">                <span class="keyword">return</span> index;</span><br><span class="line">            &#125;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//修改某个位置的元素</span></span><br><span class="line">    DoublyLinkedList.prototype.update = <span class="function"><span class="keyword">function</span>(<span class="params">position, newElement</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//越界判断</span></span><br><span class="line">        <span class="keyword">if</span>(position &lt;= <span class="number">0</span> || position &gt; <span class="built_in">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> current = <span class="built_in">this</span>.head</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; position; i++)&#123;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125;</span><br><span class="line">            current.element = newElement;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//从链表中的特定位置移除一项</span></span><br><span class="line">    DoublyLinkedList.prototype.removeAt = <span class="function"><span class="keyword">function</span>(<span class="params">position</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//越界判断</span></span><br><span class="line">        <span class="keyword">if</span>(position &lt;= <span class="number">0</span> || position &gt; <span class="built_in">this</span>.length)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">            <span class="keyword">if</span>(position == <span class="number">1</span>)&#123;</span><br><span class="line">                <span class="built_in">this</span>.head = <span class="built_in">this</span>.head.next;</span><br><span class="line">                <span class="built_in">this</span>.head.prev = <span class="literal">null</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(position == <span class="built_in">this</span>.length)&#123;</span><br><span class="line">                <span class="built_in">this</span>.tail = <span class="built_in">this</span>.tail.prev;</span><br><span class="line">                <span class="built_in">this</span>.tail.next = <span class="literal">null</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; position; i++)&#123;</span><br><span class="line">                    current = current.next;</span><br><span class="line">                &#125;</span><br><span class="line">                current.prev.next = current.next;</span><br><span class="line">                current.next.prev = current.prev;</span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.length--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断链表是否为空</span></span><br><span class="line">    DoublyLinkedList.prototype.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.length == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回链表包含的元素个数</span></span><br><span class="line">    DoublyLinkedList.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//重写toString方法</span></span><br><span class="line">    DoublyLinkedList.prototype.toString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> newString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="built_in">this</span>.head;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            newString += current.element + <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newString;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回正向遍历的节点字符串形式</span></span><br><span class="line">    DoublyLinkedList.prototype.forwardString = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回反向遍历的节点字符串形式</span></span><br><span class="line">    DoublyLinkedList.prototype.reserveString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> newString = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">let</span> current = <span class="built_in">this</span>.tail;</span><br><span class="line">        <span class="keyword">while</span>(current)&#123;</span><br><span class="line">            newString += current.element + <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            current = current.prev;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newString;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript实现集合</title>
+    <url>/2021/02/15/JavaScript%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88/</url>
+    <content><![CDATA[<p>虽然es6已经包括了Set类，可以直接使用，但为了了解集合的内部实现机制，我尝试自己来封装一下这个Set类。</p>
+<a id="more"></a>
+<h4 id="集合的特点"><a href="#集合的特点" class="headerlink" title="集合的特点"></a>集合的特点</h4><ol>
+<li>集合通常是由一组无序的不能重复的元素构成</li>
+<li>可以看作一种特殊的数组，特殊在于里面的元素没有顺序也不能重复</li>
+</ol>
+<h4 id="集合常用操作"><a href="#集合常用操作" class="headerlink" title="集合常用操作"></a>集合常用操作</h4><ul>
+<li>add(value): 向集合中添加一个新的项</li>
+<li>remove(value): 从集合中移除一个值</li>
+<li>has(value): 判断集合中是否存在该值</li>
+<li>clear(): 移除集合中的所有项</li>
+<li>size(): 返回集合所包含元素的数量</li>
+<li>values(): 返回一个包含集合中所有值的数组</li>
+</ul>
+<h4 id="集合的实现"><a href="#集合的实现" class="headerlink" title="集合的实现"></a>集合的实现</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Set</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">    <span class="built_in">this</span>.items = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方法:</span></span><br><span class="line">    <span class="comment">//向集合添加一个新的项</span></span><br><span class="line">    <span class="built_in">Set</span>.prototype.add = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//判断集合中是否已存在该元素</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.has(value))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.items[value] = value;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//从集合中移除一个值</span></span><br><span class="line">    <span class="built_in">Set</span>.prototype.remove = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.has(value))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">delete</span> <span class="built_in">this</span>.items[value];</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果值在集合中，返回true，否则返回false</span></span><br><span class="line">    <span class="built_in">Set</span>.prototype.has = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items.hasOwnProperty(value);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//移除集合中的所有项</span></span><br><span class="line">    <span class="built_in">Set</span>.prototype.clear = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.items = &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回集合中所包含元素的数量</span></span><br><span class="line">    <span class="built_in">Set</span>.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="built_in">this</span>.items).length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回一个包含集合中所有值的数组</span></span><br><span class="line">    <span class="built_in">Set</span>.prototype.values = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Object</span>.keys(<span class="built_in">this</span>.items);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="集合间的操作"><a href="#集合间的操作" class="headerlink" title="集合间的操作"></a>集合间的操作</h4><ul>
+<li>求两集合并集</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set</span>.prototype.union(otherSet)&#123;</span><br><span class="line">    <span class="comment">//创建一个新的Set实例储存并集结果</span></span><br><span class="line">    <span class="keyword">let</span> unionSet = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//取出原集合的值</span></span><br><span class="line">    <span class="keyword">let</span> Values = <span class="built_in">this</span>.values();</span><br><span class="line">    <span class="comment">//把取出的值插入unionSet</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">        unionSet.add(values[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//取出另一集合的值</span></span><br><span class="line">    values = otherset.values();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">        unionSet.add(values[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> unionset;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>求两集合交集</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set</span>.prototype.intersection = <span class="function"><span class="keyword">function</span>(<span class="params">otherSet</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> intersectionSet = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> values = <span class="built_in">this</span>.values();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">        <span class="comment">//如果该值也存在于另一个集合，则存入</span></span><br><span class="line">        <span class="keyword">if</span>(otherSet.has(values[i]))&#123;</span><br><span class="line">            intersectionSet.add(values[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> intersectionSet;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>求两集合差集</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set</span>.prototype.difference = <span class="function"><span class="keyword">function</span>(<span class="params">otherSet</span>)</span>&#123;</span><br><span class="line">       <span class="keyword">let</span> differeneSet = <span class="keyword">new</span> <span class="built_in">Set</span>();</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">let</span> values = <span class="built_in">this</span>.values();</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">           <span class="comment">//如果该值不存在于另一个集合，则存入</span></span><br><span class="line">           <span class="keyword">if</span>(otherSet.has(values[i]))&#123;</span><br><span class="line">               differenceSet.add(values[i]);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> difference;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>子集判断</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Set</span>.prototype.subset = <span class="function"><span class="keyword">function</span>(<span class="params">otherset</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> values = <span class="built_in">this</span>.values();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; values.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!otherset.has(values[i]))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript实现队列</title>
+    <url>/2021/02/13/JavaScript%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/</url>
+    <content><![CDATA[<p>基于JavaScript的数组实现队列以及优先级队列</p>
+<a id="more"></a>
+
+<h4 id="队列结构"><a href="#队列结构" class="headerlink" title="队列结构"></a>队列结构</h4><p>​    就像栈是以LIFO形式限制访问的数据结构一样，队列以先进先出(FIFO)形式限制访问。队列在列表末尾添加数据，但从列表开头获取数据。</p>
+<p><strong>图示</strong></p>
+<p><img src="/2021/02/13/JavaScript%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/Queue.jpg" alt="队列"></p>
+<h4 id="队列常用操作"><a href="#队列常用操作" class="headerlink" title="队列常用操作"></a>队列常用操作</h4><ul>
+<li><code>enqueue(element)</code>将元素加入队列</li>
+<li><code>dequeue()</code>把队列的前端元素删除,并返回被移除的元素</li>
+<li><code>front()</code>查看队列的前端元素</li>
+<li><code>isEmpty()</code>查看队列是否为空</li>
+<li><code>size()</code>查看队列元素的个数</li>
+<li><code>toString()</code>返回队列字符串</li>
+</ul>
+<h4 id="队列实现"><a href="#队列实现" class="headerlink" title="队列实现"></a>队列实现</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Queue</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="comment">//属性</span></span><br><span class="line">    <span class="built_in">this</span>.items = [];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="comment">//将元素加入队列</span></span><br><span class="line">    Queue.prototype.enqueue = <span class="function"><span class="keyword">function</span>(<span class="params">element</span>)</span>&#123;</span><br><span class="line">    	<span class="built_in">this</span>.items.push(element);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//把队列的前端元素删除，并返回被移除的元素</span></span><br><span class="line">    Queue.prototype.dequeue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> dequeue.shift();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//查看队列的前端元素</span></span><br><span class="line">    Queue.prototype.front = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="built_in">this</span>.items[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//查看队列是否为空</span></span><br><span class="line">    Queue.prototype.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="built_in">this</span>.items.length == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//查看队列的个数</span></span><br><span class="line">    Queue.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="built_in">this</span>.items.length;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//返回队列的字符串</span></span><br><span class="line">    Queue.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">let</span> s = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.items.length, i++)&#123;</span><br><span class="line">			s += <span class="built_in">this</span>.items[i] + <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="队列应用"><a href="#队列应用" class="headerlink" title="队列应用"></a>队列应用</h4><figure class="highlight text"><table><tr><td class="code"><pre><span class="line">击鼓传花问题：几个朋友一起玩一个游戏, 围成一圈, 开始数数, 数到某个数字的人自动淘汰，最后剩下的这个人会获得胜利, 请问最后剩下的是原来在哪一个位置上的人?</span><br></pre></td></tr></table></figure>
+<p><strong>实现：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">passGame</span>(<span class="params">nameList, num</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//创建一个队列</span></span><br><span class="line">	<span class="keyword">let</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line">	<span class="comment">//把名单放入队列</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt;nameList.length; i++)&#123;</span><br><span class="line">		queue.enqueue(nameList[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//循环淘汰</span></span><br><span class="line">	<span class="keyword">while</span>(queue.size() &gt; <span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; num - <span class="number">1</span>; i++)&#123;</span><br><span class="line">			queue.enqueue(queue.dequeue());</span><br><span class="line">		&#125;</span><br><span class="line">		queue.dequeue();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> nameList.indexOf(queue.dequeue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="优先级队列"><a href="#优先级队列" class="headerlink" title="优先级队列"></a>优先级队列</h4><p>顾名思义，优先级队列即元素的排列顺序与优先级有关的队列，实现优先级队列主要又两方面需要考虑：</p>
+<ul>
+<li>封装元素和优先级放在一起（可以封装一个新的构造函数）</li>
+<li>添加元素时，将当前元素的优先级和队列中已经存在元素的优先级进行比较，以获得自己正确的位置。</li>
+</ul>
+<h4 id="优先级队列实现"><a href="#优先级队列实现" class="headerlink" title="优先级队列实现"></a>优先级队列实现</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="comment">//优先级队列</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">PriorityQueue</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">QueueElement</span>(<span class="params">element, priority</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.element = element;</span><br><span class="line">        <span class="built_in">this</span>.priority = priority;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">this</span>.items = [];</span><br><span class="line"></span><br><span class="line">   PriorityQueue.prototype.dequeue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items.shift();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查看队列的前端元素</span></span><br><span class="line">   PriorityQueue.prototype.front = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查看队列是否为空</span></span><br><span class="line">   PriorityQueue.prototype.isEmpty = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items.length == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查看队列元素的个数</span></span><br><span class="line">   PriorityQueue.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.items.length;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回队列字符串</span></span><br><span class="line">    PriorityQueue.prototype.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> s = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.items.length; i++)&#123;</span><br><span class="line">            s += <span class="built_in">this</span>.items[i].element + <span class="string">&#x27;-&#x27;</span> + <span class="built_in">this</span>.items[i].priority + <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入元素</span></span><br><span class="line">    PriorityQueue.prototype.enqueue = <span class="function"><span class="keyword">function</span> (<span class="params">element, priority</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> queueElement = <span class="keyword">new</span> QueueElement(element, priority);</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.items.length == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">this</span>.items.push(queueElement)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> added = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="built_in">this</span>.items.length; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(queueElement.priority &lt;= <span class="built_in">this</span>.items[i].priority)&#123;</span><br><span class="line">                    <span class="built_in">this</span>.items.splice(i ,<span class="number">0</span> , queueElement);</span><br><span class="line">                    added = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//遍历完元素，优先级都大于新插入元素，则把其放在最后</span></span><br><span class="line">            <span class="keyword">if</span>(!added)&#123;</span><br><span class="line">                <span class="built_in">this</span>.items.push(queueElement);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown语法总结</title>
+    <url>/2021/01/29/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>​        </p>
+<p>​        借用WIki的简介：Markdown 是一种轻量级标记语言。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档。</p>
+<a id="more"></a>
+
+<img src="/2021/01/29/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/markdown常用语法思维导图.png" width="80%">
+
+
+
+<h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h4><p><strong>markdown标题可以用# + 文本的格式表示，#越多，标题级别越低。</strong></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">## 二级标题</span><br><span class="line"></span><br><span class="line">##### 五级标题</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5></blockquote>
+<p><strong>同时由于markdown支持html语法，所以也可以用h标签来写标题</strong></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;h2&gt;二级标题&lt;/h2&gt;</span><br><span class="line"></span><br><span class="line">&lt;h5&gt;五级标题&lt;/h5&gt;</span><br></pre></td></tr></table></figure>
+<p>效果</p>
+<blockquote>
+<h2>我是二级标题</h2>
+
+<h5>我是五级标题</h5>
+</blockquote>
+<h4 id="2-字体"><a href="#2-字体" class="headerlink" title="2. 字体"></a>2. 字体</h4><p><strong>markdown本身的语法只支持粗，斜字体</strong></p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">*斜体*</span><br><span class="line"></span><br><span class="line">_斜体_</span><br><span class="line"></span><br><span class="line">**粗体**</span><br><span class="line"></span><br><span class="line">__粗体__</span><br><span class="line"></span><br><span class="line">***粗斜体***</span><br><span class="line"></span><br><span class="line">___粗斜体___</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<p><em>斜体</em></p>
+<p><em>斜体</em></p>
+<p><strong>粗体</strong></p>
+<p><strong>粗体</strong></p>
+<p><strong><em>粗斜体</em></strong></p>
+<p><strong><em>粗斜体</em></strong></p>
+</blockquote>
+<p><strong>同样的，由于支持html语法，我们也可以通过内嵌html来实现修改字体，字号，颜色</strong></p>
+<ul>
+<li>字体的设置使用<code>face</code>。</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;font face=&quot;微软雅黑&quot; &gt;微软雅黑&lt;/font&gt;</span><br><span class="line">&lt;font face=&quot;华文彩云&quot; &gt;华文彩云&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字号的设置使用<code>size</code>，字号数值可设为1~7，浏览器默认为3。</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;font size=2 &gt;2号字&lt;/font&gt;</span><br><span class="line">&lt;font size=5 &gt;5号字&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>字体颜色的设置使用<code>color</code></li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;font color=#FF000 &gt;红色&lt;/font&gt;</span><br><span class="line">&lt;font color=rgb(136,136,136) &gt;绿色&lt;/font&gt;</span><br><span class="line">&lt;font color=blue &gt;蓝色&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+<p>效果</p>
+<blockquote>
+<p><font face="微软雅黑">微软雅黑</font><br><font face="华文彩云">华文彩云</font></p>
+<p><font size="2">2号字</font><br><font size="5">5号字</font></p>
+<p><font color="#FF000">红色</font><br><font color="rgb(136,136,136)">绿色</font><br><font color="blue">蓝色</font></p>
+</blockquote>
+<h4 id="3-分隔线"><a href="#3-分隔线" class="headerlink" title="3.分隔线"></a>3.分隔线</h4><p>可以用***或者—来生成分隔线</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">***</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<hr>
+<hr>
+<h4 id="4-特殊标识"><a href="#4-特殊标识" class="headerlink" title="4.特殊标识"></a>4.特殊标识</h4><ul>
+<li>下划线</li>
+</ul>
+<p><code>&lt;u&gt;下划线&lt;/u&gt;</code></p>
+<p>效果：</p>
+<blockquote>
+<p><u>下划线</u></p>
+</blockquote>
+<ul>
+<li>删除线</li>
+</ul>
+<p><code>~~删除线~~</code></p>
+<p>效果：</p>
+<blockquote>
+<p><del>删除线</del></p>
+</blockquote>
+<ul>
+<li>脚注</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">我是一句话[^我是一个脚注]</span><br><span class="line"></span><br><span class="line">[^我是一个脚注]: 我是脚注的内容（放在文末）</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<p> 我是一句话<a href="%E6%88%91%E6%98%AF%E8%84%9A%E6%B3%A8%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%88%E6%94%BE%E5%9C%A8%E6%96%87%E6%9C%AB%EF%BC%89">^我是一个脚注</a></p>
+</blockquote>
+<h4 id="5-转义"><a href="#5-转义" class="headerlink" title="5.转义"></a>5.转义</h4><p>如果要显示字符本来的内容，需在前面加上反斜杠进行转义</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">**文本加粗** </span><br><span class="line">\*\* 正常显示星号 \*\*</span><br></pre></td></tr></table></figure>
+<p>效果</p>
+<blockquote>
+<p><strong>文本加粗</strong> </p>
+<p>** 正常显示星号 **</p>
+</blockquote>
+<h4 id="6-列表"><a href="#6-列表" class="headerlink" title="6.列表"></a>6.列表</h4><ul>
+<li>无序列表</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">* 无序列表</span><br><span class="line">- 无序列表</span><br><span class="line">+ 无序列表</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<ul>
+<li>无序列表</li>
+</ul>
+<ul>
+<li>无序列表</li>
+</ul>
+<ul>
+<li>无序列表</li>
+</ul>
+</blockquote>
+<ul>
+<li>有序列表</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">1. 第一列</span><br><span class="line">2. 第二列</span><br><span class="line">3. 第三列</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<ol>
+<li>第一列</li>
+<li>第二列</li>
+<li>第三列</li>
+</ol>
+</blockquote>
+<h4 id="7-表格"><a href="#7-表格" class="headerlink" title="7.表格"></a>7.表格</h4><p>注意使用—来划分表头和内容</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">|表头|表头|表头|</span><br><span class="line">|---|---|---|</span><br><span class="line">|内容|内容|内容|</span><br><span class="line">|内容|内容|内容|</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>表头</th>
+<th>表头</th>
+<th>表头</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>内容</td>
+<td>内容</td>
+<td>内容</td>
+</tr>
+<tr>
+<td>内容</td>
+<td>内容</td>
+<td>内容</td>
+</tr>
+</tbody></table>
+</blockquote>
+<h4 id="8-区块"><a href="#8-区块" class="headerlink" title="8.区块"></a>8.区块</h4><p>使用 &gt; 来来创建区块，也可以在区块中再次使用 &gt; 实现区块嵌套</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&gt;第一层</span><br><span class="line">&gt;&gt;第二层</span><br><span class="line">&gt;&gt;&gt;第三层</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<p>第一层</p>
+<blockquote>
+<p>第二层</p>
+<blockquote>
+<p>第三层</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h4 id="9-代码"><a href="#9-代码" class="headerlink" title="9.代码"></a>9.代码</h4><ul>
+<li>指定语言的代码区块</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">​```c</span><br><span class="line">int i = 1;</span><br><span class="line">print(i);</span><br><span class="line">​```</span><br><span class="line"></span><br><span class="line">​```javascript</span><br><span class="line">let i = 1;</span><br><span class="line">console.log(i);</span><br><span class="line">​```</span><br></pre></td></tr></table></figure>
+<p>效果</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">print(i);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(i);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不指定语言的代码片段</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">`console.log(1)`是一个代码片段</span><br></pre></td></tr></table></figure>
+<p>效果:</p>
+<blockquote>
+<p> <code>console.log(1)</code>是一个代码片段</p>
+</blockquote>
+<h4 id="10-链接"><a href="#10-链接" class="headerlink" title="10.链接"></a>10.链接</h4><ul>
+<li>链接使用方法如下</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">这是一个链接[百度](http://baidu.com)</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<p>这是一个链接<a href="http://baidu.com/">百度</a></p>
+</blockquote>
+<ul>
+<li>也可以直接使用链接地址</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;http://baidu.com&gt;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<p><a href="http://baidu.com/">http://baidu.com</a></p>
+</blockquote>
+<ul>
+<li>还可以通过变量来设置一个链接，变量赋值在文档末尾进行</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">这个链接用1来做变量[百度][1]</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<p>这个链接用1来做变量<a href="http://baidu.com/">百度</a></p>
+</blockquote>
+<h4 id="11-图片"><a href="#11-图片" class="headerlink" title="11.图片"></a>11.图片</h4><p>Markdown 图片语法格式如下：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">![一只猫](markdown常用语法总结/cat.jpg)</span><br><span class="line"></span><br><span class="line">![一只猫](markdown常用语法总结/cat.jpg &quot;猫&quot;)</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<p><img src="/2021/01/29/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/cat.jpg" alt="一只猫"></p>
+</blockquote>
+<blockquote>
+<p><img src="/2021/01/29/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/cat.jpg" alt="一只猫" title="猫"></p>
+</blockquote>
+<ul>
+<li>Markdown 还没有办法指定图片的高度与宽度，但是可以使用 <img> 标签来达到目的。</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;img src = &quot;cat.jpg&quot;, width = 10%&gt;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<blockquote>
+<img src="/2021/01/29/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/cat.jpg" width="10%">
+</blockquote>
+<h4 id="12-其他"><a href="#12-其他" class="headerlink" title="12.其他"></a>12.其他</h4><p>除了这些，还可以用markdown实现流程图，甘特图的绘制，以及利用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式的方式在编辑器插入数学公式。但是鉴于根本用不到，故不再赘述。</p>
+]]></content>
+      <tags>
+        <tag>Markdown</tag>
+        <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>圣杯布局和双飞翼布局</title>
+    <url>/2021/03/11/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/</url>
+    <content><![CDATA[<p>pc网页经典布局</p>
+<a id="more"></a>
+
+<h3 id="布局特点"><a href="#布局特点" class="headerlink" title="布局特点"></a>布局特点</h3><ul>
+<li>三栏布局，中间一栏最先渲染和加载</li>
+<li>；两侧内容固定，中间内容随宽度自适应</li>
+</ul>
+<h3 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h3><ul>
+<li>使用float布局</li>
+<li>两侧使用<code>margin</code>负值，以便和中间内容重叠</li>
+<li>防止中间内容被两次覆盖，圣杯布局用<code>padding</code>，双飞翼布局用<code>margin</code></li>
+</ul>
+<h3 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;header&quot;</span>&gt;</span>header<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;container&quot;</span> <span class="attr">class</span> = <span class="string">&quot;clearfix&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;center&quot;</span> <span class="attr">class</span> = <span class="string">&quot;column&quot;</span>&gt;</span>center<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;left&quot;</span> <span class="attr">class</span> = <span class="string">&quot;column&quot;</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;right&quot;</span> <span class="attr">class</span> = <span class="string">&quot;column&quot;</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;footer&quot;</span>&gt;</span>footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#container</span> <span class="selector-class">.column</span>&#123;</span><br><span class="line">            <span class="attribute">float</span>: left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-id">#header</span> &#123;</span><br><span class="line">            <span class="attribute">text-align</span>: center;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="number">#f1f1f1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 根据left和right的宽度设置padding，给出显示两边内容的空间 */</span></span><br><span class="line">        <span class="selector-id">#container</span>&#123;</span><br><span class="line">            <span class="attribute">padding-left</span>: <span class="number">200px</span>;</span><br><span class="line">            <span class="attribute">padding-right</span>: <span class="number">150px</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-id">#center</span> &#123;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100%</span> ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-id">#left</span> &#123;</span><br><span class="line">            <span class="attribute">background-color</span>: yellow;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">            <span class="comment">/* 通过margin-left负值使left和center横向重合 */</span></span><br><span class="line">            <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">            <span class="comment">/* 通过relative定位，设置right把自身向左推200px */</span></span><br><span class="line">            <span class="attribute">position</span>: relative;</span><br><span class="line">            <span class="attribute">right</span>: <span class="number">200px</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-id">#right</span> &#123;</span><br><span class="line">            <span class="attribute">background-color</span>: red;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">150px</span>;</span><br><span class="line">            <span class="comment">/* 设置margin-right负值，使自身宽度在外界看来为0，不再需要换行，自动移至center右侧 */</span></span><br><span class="line">            <span class="attribute">margin-right</span>: -<span class="number">150px</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-id">#footer</span> &#123;</span><br><span class="line">            <span class="attribute">text-align</span>: center;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="number">#f1f1f1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/* 通过clearfix使footer被撑到container下方 */</span></span><br><span class="line">        <span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">            <span class="attribute">display</span>: block;</span><br><span class="line">            <span class="attribute">clear</span>: both;</span><br><span class="line">            <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="/2021/03/11/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/%E5%9C%A3%E6%9D%AF.png" alt="圣杯布局"></p>
+<h3 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;main-wrap&quot;</span>&gt;</span></span><br><span class="line">        this is main</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;left&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">    this is left</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;right&quot;</span> <span class="attr">class</span>=<span class="string">&quot;col&quot;</span>&gt;</span></span><br><span class="line">    this is right</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.col</span> &#123;</span><br><span class="line">            <span class="attribute">float</span>: left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-id">#main</span> &#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="number">#ccc</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-id">#main-wrap</span> &#123;</span><br><span class="line">            <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">190px</span> <span class="number">0</span> <span class="number">190px</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="selector-id">#left</span> &#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">190px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="number">#0000FF</span>;</span><br><span class="line">            <span class="attribute">margin-left</span>: -<span class="number">100%</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-id">#right</span> &#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">190px</span>;</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">            <span class="attribute">background-color</span>: <span class="number">#FF0000</span>;</span><br><span class="line">            <span class="attribute">margin-left</span>: -<span class="number">190px</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="/2021/03/11/%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC%E5%B8%83%E5%B1%80/%E5%8F%8C%E9%A3%9E%E7%BF%BC.png" alt="双飞翼布局"></p>
+]]></content>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>行内元素、块级元素</title>
+    <url>/2021/03/07/%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%E3%80%81%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0/</url>
+    <content><![CDATA[<p>简单总结行内元素、块级元素、行内块元素的异同</p>
+<a id="more"></a>
+
+<p><strong>块级元素</strong>：</p>
+<ul>
+<li>独占一行</li>
+<li>设置width和height有效。（默认width是父元素的100%，height取决于内容的height）</li>
+<li>设置margin，上下左右有效</li>
+<li>设置padding，上下左右有效</li>
+</ul>
+<blockquote>
+<p>常见块级元素：<code>div</code>、<code>h1~6</code>、<code>p</code>、<code>ul</code></p>
+</blockquote>
+<p><strong>行内元素</strong>：</p>
+<ul>
+<li>不会独占一行</li>
+<li>设置width和height无效。（默认width取决于内容的width，默认height取决于内容的height）</li>
+<li>设置margin，左右有效，上下无效</li>
+<li>设置padding，上下左右都有效，但不建议设置上下，易导致对上下元素的覆盖。</li>
+</ul>
+<blockquote>
+<p>常见行内元素：<code>a</code> 、<code>span</code>、 <code>em</code>、 <code>i</code>、 <code>b</code>、 <code>strong</code></p>
+</blockquote>
+<p><strong>行内块元素</strong></p>
+<ul>
+<li>不会独占一行</li>
+<li>设置width和height有效</li>
+<li>设置margin，上下左右有效</li>
+<li>设置padding，上下左右有效</li>
+</ul>
+<hr>
+<p><strong>使用display属性可以将三者互相转换</strong>：</p>
+<ul>
+<li><code>display: inline</code>转换为行内元素</li>
+<li><code>display: block</code>转换为块级元素</li>
+<li><code>display: inline-block</code>转换为行内块级元素</li>
+<li><code>display: none</code>元素不显示</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>html</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重排和重绘</title>
+    <url>/2021/03/19/%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98/</url>
+    <content><![CDATA[<p>施工中—</p>
+<a id="more"></a>]]></content>
+      <tags>
+        <tag>前端性能</tag>
+      </tags>
+  </entry>
+</search>
