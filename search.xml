@@ -38,7 +38,7 @@
 </ul>
 <h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p><code>static</code>是position属性的默认值，浏览器会按照源码的顺序，决定每个元素的位置，这称为“正常流”(Normal flow)。</p>
 <h4 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h4><p>表示元素相对于默认位置(即static)偏移，可以由<code>left</code>、<code>right</code>、<code>top</code>、<code>bottom</code>控制偏移量</p>
-<h4 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h4><p>表示元素相对于父元素偏移，且改父元素不能是<code>static</code>定位，否则定位基点就会变成整个网页的根元素<code>html</code>。和relative类似，absolute定位也需用<code>left</code>、<code>right</code>、<code>top</code>、<code>bottom</code>控制偏移量</p>
+<h4 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h4><p>表示元素相对于父元素偏移，且该父元素不能是<code>static</code>定位，否则定位基点就会变成整个网页的根元素<code>html</code>。和relative类似，absolute定位也需用<code>left</code>、<code>right</code>、<code>top</code>、<code>bottom</code>控制偏移量</p>
 <blockquote>
 <p>absolute定位的元素会被“正常流”忽略，即在正常流中，该元素所占空间为零</p>
 </blockquote>
@@ -206,7 +206,7 @@
     <content><![CDATA[<p>使用JavaScript通过链地址法实现哈希表</p>
 <a id="more"></a>
 
-<h4 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h4><p>对于哈希表的介绍，一言难尽，反正前人之述备矣，我就先把代码贴上吧，以后有机会再回来总结哈希表。</p>
+<h4 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h4><p>&emsp;&emsp;哈希表是根据关键码值(Key value)而直接进行访问的数据结构。也就是说，它通过把关键码值映射到表中一个位置来访问记录，以加快查找的速度。<br>&emsp;&emsp;给定表M，存在函数f(key)，对任意给定的关键字值key，代入函数后若能得到包含该关键字的记录在表中的地址，则称表M为哈希(Hash）表，函数f(key)为哈希(Hash) 函数。</p>
 <h4 id="哈希表实现"><a href="#哈希表实现" class="headerlink" title="哈希表实现"></a>哈希表实现</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">HashTable</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//属性</span></span><br><span class="line">    <span class="built_in">this</span>.storage = [];</span><br><span class="line">    <span class="built_in">this</span>.count = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">this</span>.limit = <span class="number">7</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//方法</span></span><br><span class="line">    <span class="comment">//哈希函数</span></span><br><span class="line">    HashTable.prototype.hasFunc = <span class="function"><span class="keyword">function</span>(<span class="params">str, size</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> hashcode = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; str.length; i++)&#123;</span><br><span class="line">            hashcode = <span class="number">37</span> * hashcode + str.charCodeAt(i)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> index = hashcode % size;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断是否为质数</span></span><br><span class="line">    HashTable.prototype.isPrime = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(num &lt;= <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">2</span>; i &lt;= <span class="built_in">Math</span>.sqrt(num); i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(num % i == <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//插入与修改</span></span><br><span class="line">    HashTable.prototype.put = <span class="function"><span class="keyword">function</span>(<span class="params">key, value</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//根据key获取index</span></span><br><span class="line">        <span class="keyword">let</span> index = <span class="built_in">this</span>.hasFunc(key, <span class="built_in">this</span>.limit);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//根据index获取bucket</span></span><br><span class="line">        <span class="keyword">let</span> bucket = <span class="built_in">this</span>.storage[index];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断bucket是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(!bucket)&#123;</span><br><span class="line">            bucket = [];</span><br><span class="line">            <span class="built_in">this</span>.storage[index] = bucket;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断是否是修改数据</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">            <span class="keyword">if</span>(tuple[<span class="number">0</span>] == key)&#123;</span><br><span class="line">                tuple[<span class="number">1</span>] = value;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行添加操作</span></span><br><span class="line">        bucket.push([key, value]);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.count++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断是否需要扩容</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">this</span>.count &gt; <span class="number">0.75</span> * <span class="built_in">this</span>.limit)&#123;</span><br><span class="line">            <span class="keyword">let</span> newLimit = <span class="built_in">this</span>.limit * <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">while</span>(!<span class="built_in">this</span>.isPrime(newLimit))&#123;</span><br><span class="line">                newLimit++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">this</span>.resize(newLimit);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取</span></span><br><span class="line">    HashTable.prototype.get = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//根据key获取index</span></span><br><span class="line">        <span class="keyword">let</span> index = <span class="built_in">this</span>.hasFunc(key, <span class="built_in">this</span>.limit);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//根据index获取bucket</span></span><br><span class="line">        <span class="keyword">let</span> bucket = <span class="built_in">this</span>.storage[index];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断bucket是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(!bucket)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//查找key</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">            <span class="keyword">if</span>(tuple[<span class="number">0</span>] == key)&#123;</span><br><span class="line">                <span class="keyword">return</span> tuple[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除</span></span><br><span class="line">    HashTable.prototype.remove = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//根据key获取index</span></span><br><span class="line">        <span class="keyword">let</span> index = <span class="built_in">this</span>.hasFunc(key, <span class="built_in">this</span>.limit);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//根据index获取bucket</span></span><br><span class="line">        <span class="keyword">let</span> bucket = <span class="built_in">this</span>.storage[index];</span><br><span class="line"></span><br><span class="line">        <span class="comment">//判断bucket是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(!bucket)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//查找key并删除</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; bucket.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">            <span class="keyword">if</span>(tuple[<span class="number">0</span>] == key)&#123;</span><br><span class="line">                bucket.splice(i, <span class="number">1</span>);</span><br><span class="line">                <span class="built_in">this</span>.count--;</span><br><span class="line"></span><br><span class="line">                <span class="comment">//判断是否需要缩小容量</span></span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">this</span>.count &gt; <span class="number">7</span> &amp;&amp; <span class="built_in">this</span>.count &lt; <span class="number">0.25</span> * <span class="built_in">this</span>.limit)&#123;</span><br><span class="line">                    <span class="keyword">let</span> newLimit = <span class="built_in">Math</span>.floor(<span class="built_in">this</span>.limit/<span class="number">2</span>);</span><br><span class="line">                    <span class="keyword">while</span>(!<span class="built_in">this</span>.isPrime(newLimit))&#123;</span><br><span class="line">                        newLimit++;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="built_in">this</span>.resize(newLimit);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断是否为空</span></span><br><span class="line">    HashTable.prototype.isEmpty = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.count == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取元素个数</span></span><br><span class="line">    HashTable.prototype.size = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//扩容</span></span><br><span class="line">    HashTable.prototype.resize = <span class="function"><span class="keyword">function</span> (<span class="params">newLimit</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//保留旧的数组内容</span></span><br><span class="line">        <span class="keyword">let</span> oldStorage = <span class="built_in">this</span>.storage;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//重置所有属性</span></span><br><span class="line">        <span class="built_in">this</span>.storage = [];</span><br><span class="line">        <span class="built_in">this</span>.count = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">this</span>.limit = newLimit;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//遍历旧数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; oldStorage.length; i++)&#123;</span><br><span class="line">            <span class="keyword">let</span> bucket = oldStorage[i];</span><br><span class="line">            <span class="keyword">if</span>(bucket == <span class="literal">null</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; bucket.length; j++)&#123;</span><br><span class="line">                    <span class="keyword">let</span> tuple = bucket[i];</span><br><span class="line">                    <span class="built_in">this</span>.put(tuple[<span class="number">0</span>], tuple[<span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
@@ -422,7 +422,7 @@
 
 
 
-<h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1. 标题"></a>1. 标题</h4><p><strong>markdown标题可以用# + 文本的格式表示，#越多，标题级别越低。</strong></p>
+<h4 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h4><p><strong>markdown标题可以用# + 文本的格式表示，#越多，标题级别越低。</strong></p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">## 二级标题</span><br><span class="line"></span><br><span class="line">##### 五级标题</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <blockquote>
@@ -435,7 +435,7 @@
 
 <h5>我是五级标题</h5>
 </blockquote>
-<h4 id="2-字体"><a href="#2-字体" class="headerlink" title="2. 字体"></a>2. 字体</h4><p><strong>markdown本身的语法只支持粗，斜字体</strong></p>
+<h4 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h4><p><strong>markdown本身的语法只支持粗，斜字体</strong></p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">*斜体*</span><br><span class="line"></span><br><span class="line">_斜体_</span><br><span class="line"></span><br><span class="line">**粗体**</span><br><span class="line"></span><br><span class="line">__粗体__</span><br><span class="line"></span><br><span class="line">***粗斜体***</span><br><span class="line"></span><br><span class="line">___粗斜体___</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <blockquote>
@@ -465,12 +465,12 @@
 <p><font size="2">2号字</font><br><font size="5">5号字</font></p>
 <p><font color="#FF000">红色</font><br><font color="rgb(136,136,136)">绿色</font><br><font color="blue">蓝色</font></p>
 </blockquote>
-<h4 id="3-分隔线"><a href="#3-分隔线" class="headerlink" title="3.分隔线"></a>3.分隔线</h4><p>可以用***或者—来生成分隔线</p>
+<h4 id="分隔线"><a href="#分隔线" class="headerlink" title="分隔线"></a>分隔线</h4><p>可以用***或者—来生成分隔线</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">***</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <hr>
 <hr>
-<h4 id="4-特殊标识"><a href="#4-特殊标识" class="headerlink" title="4.特殊标识"></a>4.特殊标识</h4><ul>
+<h4 id="特殊标识"><a href="#特殊标识" class="headerlink" title="特殊标识"></a>特殊标识</h4><ul>
 <li>下划线</li>
 </ul>
 <p><code>&lt;u&gt;下划线&lt;/u&gt;</code></p>
@@ -494,14 +494,14 @@
 <blockquote>
 <p> 我是一句话<a href="%E6%88%91%E6%98%AF%E8%84%9A%E6%B3%A8%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%88%E6%94%BE%E5%9C%A8%E6%96%87%E6%9C%AB%EF%BC%89">^我是一个脚注</a></p>
 </blockquote>
-<h4 id="5-转义"><a href="#5-转义" class="headerlink" title="5.转义"></a>5.转义</h4><p>如果要显示字符本来的内容，需在前面加上反斜杠进行转义</p>
+<h4 id="转义"><a href="#转义" class="headerlink" title="转义"></a>转义</h4><p>如果要显示字符本来的内容，需在前面加上反斜杠进行转义</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">**文本加粗** </span><br><span class="line">\*\* 正常显示星号 \*\*</span><br></pre></td></tr></table></figure>
 <p>效果</p>
 <blockquote>
 <p><strong>文本加粗</strong> </p>
 <p>** 正常显示星号 **</p>
 </blockquote>
-<h4 id="6-列表"><a href="#6-列表" class="headerlink" title="6.列表"></a>6.列表</h4><ul>
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><ul>
 <li>无序列表</li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">* 无序列表</span><br><span class="line">- 无序列表</span><br><span class="line">+ 无序列表</span><br></pre></td></tr></table></figure>
@@ -529,7 +529,7 @@
 <li>第三列</li>
 </ol>
 </blockquote>
-<h4 id="7-表格"><a href="#7-表格" class="headerlink" title="7.表格"></a>7.表格</h4><p>注意使用—来划分表头和内容</p>
+<h4 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h4><p>注意使用—来划分表头和内容</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">|表头|表头|表头|</span><br><span class="line">|---|---|---|</span><br><span class="line">|内容|内容|内容|</span><br><span class="line">|内容|内容|内容|</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <blockquote>
@@ -553,7 +553,7 @@
 </tr>
 </tbody></table>
 </blockquote>
-<h4 id="8-区块"><a href="#8-区块" class="headerlink" title="8.区块"></a>8.区块</h4><p>使用 &gt; 来来创建区块，也可以在区块中再次使用 &gt; 实现区块嵌套</p>
+<h4 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h4><p>使用 &gt; 来来创建区块，也可以在区块中再次使用 &gt; 实现区块嵌套</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&gt;第一层</span><br><span class="line">&gt;&gt;第二层</span><br><span class="line">&gt;&gt;&gt;第三层</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <blockquote>
@@ -565,7 +565,7 @@
 </blockquote>
 </blockquote>
 </blockquote>
-<h4 id="9-代码"><a href="#9-代码" class="headerlink" title="9.代码"></a>9.代码</h4><ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><ul>
 <li>指定语言的代码区块</li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">​```c</span><br><span class="line">int i = 1;</span><br><span class="line">print(i);</span><br><span class="line">​```</span><br><span class="line"></span><br><span class="line">​```javascript</span><br><span class="line">let i = 1;</span><br><span class="line">console.log(i);</span><br><span class="line">​```</span><br></pre></td></tr></table></figure>
@@ -580,7 +580,7 @@
 <blockquote>
 <p> <code>console.log(1)</code>是一个代码片段</p>
 </blockquote>
-<h4 id="10-链接"><a href="#10-链接" class="headerlink" title="10.链接"></a>10.链接</h4><ul>
+<h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><ul>
 <li>链接使用方法如下</li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">这是一个链接[百度](http://baidu.com)</span><br></pre></td></tr></table></figure>
@@ -604,7 +604,7 @@
 <blockquote>
 <p>这个链接用1来做变量<a href="http://baidu.com/">百度</a></p>
 </blockquote>
-<h4 id="11-图片"><a href="#11-图片" class="headerlink" title="11.图片"></a>11.图片</h4><p>Markdown 图片语法格式如下：</p>
+<h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p>Markdown 图片语法格式如下：</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">![一只猫](markdown常用语法总结/cat.jpg)</span><br><span class="line"></span><br><span class="line">![一只猫](markdown常用语法总结/cat.jpg &quot;猫&quot;)</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <blockquote>
@@ -621,7 +621,7 @@
 <blockquote>
 <img src="/2021/01/29/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/cat.jpg" width="10%">
 </blockquote>
-<h4 id="12-其他"><a href="#12-其他" class="headerlink" title="12.其他"></a>12.其他</h4><p>除了这些，还可以用markdown实现流程图，甘特图的绘制，以及利用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式的方式在编辑器插入数学公式。但是鉴于根本用不到，故不再赘述。</p>
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>除了这些，还可以用markdown实现流程图，甘特图的绘制，以及利用两个美元符 $$ 包裹 TeX 或 LaTeX 格式的数学公式的方式在编辑器插入数学公式。但是鉴于根本用不到，故不再赘述。</p>
 ]]></content>
       <tags>
         <tag>Markdown</tag>
@@ -636,12 +636,12 @@
 
 <h3 id="布局特点"><a href="#布局特点" class="headerlink" title="布局特点"></a>布局特点</h3><ul>
 <li>三栏布局，中间一栏最先渲染和加载</li>
-<li>；两侧内容固定，中间内容随宽度自适应</li>
+<li>两侧内容固定，中间内容随宽度自适应</li>
 </ul>
 <h3 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h3><ul>
 <li>使用float布局</li>
 <li>两侧使用<code>margin</code>负值，以便和中间内容重叠</li>
-<li>防止中间内容被两次覆盖，圣杯布局用<code>padding</code>，双飞翼布局用<code>margin</code></li>
+<li>防止中间内容被两侧覆盖，圣杯布局用<code>padding</code>，双飞翼布局用<code>margin</code></li>
 </ul>
 <h3 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;header&quot;</span>&gt;</span>header<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;container&quot;</span> <span class="attr">class</span> = <span class="string">&quot;clearfix&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;center&quot;</span> <span class="attr">class</span> = <span class="string">&quot;column&quot;</span>&gt;</span>center<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;left&quot;</span> <span class="attr">class</span> = <span class="string">&quot;column&quot;</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;right&quot;</span> <span class="attr">class</span> = <span class="string">&quot;column&quot;</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> = <span class="string">&quot;footer&quot;</span>&gt;</span>footer<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
