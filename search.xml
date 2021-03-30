@@ -181,11 +181,11 @@
 <p>&emsp;&emsp;如上可见，<code>me</code>是<code>Student</code>的实例对象，同时获得了<code>Student</code>的方法以及<code>Student</code>的父类<code>People</code>的方法，那么这些方法是如何获取的呢。在以上代码的基础上，我们在浏览器输入<code>me</code>查看：</p>
 <p><img src="/2021/03/30/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/me.png" alt="me"></p>
 <p>&emsp;&emsp;可以看出，<code>me</code>是一个<code>Student</code>对象，它有属性<code>name</code>、<code>number</code>，以及一个<code>__proto__</code>属性，该<code>___proto__</code>属性中有一个<code>selfIntro</code>方法，一个<code>__proto__</code>属性，**以及一个<code>constructor</code>属性指向<code>Class Student</code>**，即<code>Student</code>构造函数。我们把这个<code>__proto__</code>属性写作<code>me.__proto__</code>。再输入<code>Student.prototype</code>查看：</p>
-<p><img src="/2021/03/30/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/student.png" alt="student.prototype"></p>
+<p><img src="/2021/03/30/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/Student.png" alt="student.prototype"></p>
 <p>&emsp;&emsp;可以很清晰的看到，它和上面的<code>me.__proto__</code>内容相同。同时，它的<code>__proto__</code>有一个<code>constructor</code>属性指向<code> Class People</code>，结合上面的黑字部分，我们可以判断出，<code>Student.prototype</code>是<code>people</code>的一个实例。我们可以进一步验证以上推断：</p>
 <p><img src="/2021/03/30/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/%E8%AF%81%E6%98%8E.png" alt="证明"></p>
 <p>&emsp;&emsp;由此我们可以根据这些关系画出一个一目了然的图示（为了简化省略了<code>Teacher</code>）：</p>
-<p><img src="/2021/03/30/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/%E5%8E%9F%E5%9E%8B%E9%93%BE.png" alt="原型链"></p>
+<p><img src="/2021/03/30/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/list.png" alt="原型链"></p>
 <p>&emsp;&emsp;这便是JavaScript的<strong>原型链</strong>，当我们调用一个对象的方法时，依次查找本对象的属性，如果没有，就沿着<code>__proto__</code>属性向上查找，直到找到同名方法。</p>
 <h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><h5 id="类继承"><a href="#类继承" class="headerlink" title="类继承"></a>类继承</h5><p>&emsp;&emsp;最简洁的继承方式莫过于前文使用过的，通过<code>Class</code>和<code>extends</code>实现继承，子类<code>extends</code>父类，用<code>super</code>调用父类构造函数即可实现继承。需要注意的是：</p>
 <ol>
