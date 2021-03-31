@@ -781,4 +781,43 @@
         <tag>前端性能</tag>
       </tags>
   </entry>
+  <entry>
+    <title>JavaScript作用域和闭包总结</title>
+    <url>/2021/03/21/JavaScript%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E9%97%AD%E5%8C%85/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>手写一个简易Jquery</title>
+    <url>/2021/03/18/%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E6%98%93Jquery/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>for-in和for-of的区别</title>
+    <url>/2021/03/31/%E8%BF%AD%E4%BB%A3/</url>
+    <content><![CDATA[<p>&emsp;&emsp;今天做题错把<code>for in</code>当<code>for of</code>用了，翻开红宝书一看二者的定义赫然在就第三章，不得不感叹确实不能太相信自己的记忆力。遂专门记下来加深印象。</p>
+<a id="more"></a>
+
+<h3 id="for-in"><a href="#for-in" class="headerlink" title="for-in"></a>for-in</h3><p><code>for-in</code>用于枚举对象中的非符号键属性：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> me = &#123;</span><br><span class="line">	name: <span class="string">&#x27;袁斌&#x27;</span>,</span><br><span class="line">	age: <span class="number">21</span>,</span><br><span class="line">	major: <span class="string">&#x27;EIC&#x27;</span>,</span><br><span class="line">	<span class="number">1</span>: <span class="number">1</span>,</span><br><span class="line">	<span class="number">2</span>: <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> propName <span class="keyword">in</span> me)&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(propName);<span class="comment">//1 2 name age major</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所有可枚举的属性都会返回一次，但返回的顺序因浏览器而异，因为ECMAScirpt中对象的属性是无序的。</li>
+<li>如果<code>for-in</code>要迭代的变量是<code>null</code>或<code>undefined</code>，则不执行循环体。<h3 id="for-of"><a href="#for-of" class="headerlink" title="for-of"></a>for-of</h3></li>
+</ul>
+<p><code>for-of</code>用于遍历可迭代对象的元素：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> item <span class="keyword">of</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>,])&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(item);<span class="comment">//1 2 3 4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>for-of</code>循环会按照可迭代对象的<code>next()</code>方法产生值的顺序迭代元素。</li>
+<li>如果变量不支持迭代，则会怕抛出错误。</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
 </search>
