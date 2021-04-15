@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ez4yb.cn/2021/04/12/ReactHook%E5%88%9D%E6%8E%A2/</loc>
+    <lastmod>2021-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://ez4yb.cn/2021/03/05/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2021-03-31</lastmod>
+  </url>
+  <url>
     <loc>https://ez4yb.cn/2021/03/31/%E8%BF%AD%E4%BB%A3/</loc>
     <lastmod>2021-03-31</lastmod>
   </url>
@@ -18,10 +26,6 @@
   </url>
   <url>
     <loc>https://ez4yb.cn/2021/03/15/JavaScript%E6%B7%B1%E6%8B%B7%E8%B4%9D/</loc>
-    <lastmod>2021-03-31</lastmod>
-  </url>
-  <url>
-    <loc>https://ez4yb.cn/2021/03/05/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2021-03-31</lastmod>
   </url>
   <url>
