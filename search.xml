@@ -164,7 +164,11 @@
     <content><![CDATA[<p>​        以一张思维导图的形式对Git常用指令做个概括</p>
 <a id="more"></a>
 
-<p><img src="/2021/01/30/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93.png" alt="Git常用指令总结"></p>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><img src="/2021/01/30/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93.png" alt="Git常用指令总结"></p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><ol>
+<li><code>git add. </code>提交被修改和新建的文件,但不包括被删除的文件</li>
+<li><code>git add -u</code>更新所有被修改的文件。</li>
+</ol>
 ]]></content>
       <tags>
         <tag>Git</tag>
@@ -823,6 +827,46 @@
 <a id="more"></a>]]></content>
       <tags>
         <tag>前端性能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>apply、call和bind</title>
+    <url>/2021/04/15/apply%E3%80%81call%E5%92%8Cbind/</url>
+    <content><![CDATA[<p>&emsp;&emsp;apply、call和bind的主要作用都是改变<strong>this</strong>的指向，而具体的使用则有所不同。</p>
+<a id="more"></a>
+
+<h3 id="call"><a href="#call" class="headerlink" title="call"></a>call</h3><p><code>call()</code>可以改变函数执行时的上下文，将一个对象的方法交给另一个对象执行，并立即执行。</p>
+<h4 id="call的使用规则"><a href="#call的使用规则" class="headerlink" title="call的使用规则"></a>call的使用规则</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>thisArg: <code>function</code>运行时所使用的<code>this</code>值，如果未传入，或者传入<code>undifined</code>或<code>null</code>，则指向全局对象<code>window</code>。(在严格模式下，则为<code>undifined</code>)</li>
+<li>arg1, arg2 ···: 参数列表。每个参数会映射到相应位置的<code>function</code>参数上。如果将所有参数作为数组传入，它们会作为一个整体映射到<code>function</code>的第一个参数，之后的参数都为空。<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">示例：</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">a, b, c</span>)</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func.call(<span class="built_in">this</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>);<span class="comment">//接收到的参数是&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;</span></span><br><span class="line">func.call(<span class="built_in">this</span>, [<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]);<span class="comment">//接收到的参数是[&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;],undefined,undefined</span></span><br></pre></td></tr></table></figure>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name;</span><br><span class="line">    <span class="built_in">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    SuperType.call(<span class="built_in">this</span>, name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> subObj = <span class="keyword">new</span> SubType(<span class="string">&#x27;袁斌&#x27;</span>);</span><br><span class="line"></span><br><span class="line">subObj.sayName();<span class="comment">//袁斌</span></span><br></pre></td></tr></table></figure>
+不传入第一个参数时：<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> name = <span class="string">&#x27;袁斌&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayName</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sayName.call();<span class="comment">//袁斌</span></span><br></pre></td></tr></table></figure>
+<h4 id="call的模拟实现"><a href="#call的模拟实现" class="headerlink" title="call的模拟实现"></a>call的模拟实现</h4>根据之前对<code>call()</code>的描述，可以把其功能拆分成如下一个步骤：</li>
+</ul>
+<ol>
+<li><p>将函数设置为传入对象的属性(如果为<code>null</code>或<code>undefined</code>，则设置为<code>window</code>)</p>
+</li>
+<li><p>接受传入的参数，执行该函数</p>
+</li>
+<li><p>删除该函数</p>
+</li>
+</ol>
+<p>根据此思路，实现<code>call()</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.myCall = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//判断传入对象是否为空</span></span><br><span class="line">    context = context || <span class="built_in">window</span>;</span><br><span class="line">    <span class="comment">//将函数设置为传入对象的属性</span></span><br><span class="line">    context.fn = <span class="built_in">this</span>;</span><br><span class="line">	<span class="comment">//传入参数,执行函数</span></span><br><span class="line">    <span class="keyword">const</span> args = [...arguments].slice(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">const</span> result = context.fn(...args);</span><br><span class="line">	<span class="comment">//删除该函数</span></span><br><span class="line">    <span class="keyword">delete</span> context.fn();</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><p><code>apply</code>功能与<code>call</code>相同，它们的不同点在于对参数的处理。</p>
+<h4 id="apply使用规则"><a href="#apply使用规则" class="headerlink" title="apply使用规则"></a>apply使用规则</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure>
+<p>第二个参数必须是数座或者类数组，它会被转化成一个类数组映射到function对应的参数上</p>
+<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span>.apply(<span class="built_in">this</span>, [a, b, c]);<span class="comment">//接受到的参数为a, b, c</span></span><br></pre></td></tr></table></figure>
+<h4 id="apply的模拟实现"><a href="#apply的模拟实现" class="headerlink" title="apply的模拟实现"></a>apply的模拟实现</h4><p>与<code>call</code>的差异只有参数处理</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.meApply(context)&#123;</span><br><span class="line">	<span class="comment">//判断传入对象是否为空</span></span><br><span class="line">	context = context || windows;</span><br><span class="line">	<span class="comment">//将函数设置为传入对象的属性</span></span><br><span class="line">	context.fn = <span class="built_in">this</span>;</span><br><span class="line">	<span class="comment">//传入参数，执行函数</span></span><br><span class="line">    <span class="keyword">const</span> args = <span class="built_in">arguments</span>[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">const</span> result = context.fn(...args);</span><br><span class="line">    <span class="comment">//删除函数</span></span><br><span class="line">    <span class="keyword">delete</span> context.fn;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p><code>bind()</code>创建一个新的函数，当<code>bind()</code>被调用时，这个函数的<code>this</code>指向<code>bind()</code>的第一个参数，而其余参数将作为新函数的参数，供调用时使用。</p>
+<h4 id="bind使用规则"><a href="#bind使用规则" class="headerlink" title="bind使用规则"></a>bind使用规则</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span>.bind(thisArg[, arg1[, arg2[, ...]]])</span><br></pre></td></tr></table></figure>
+<p><code>call</code>和<code>apply</code>改变函数<code>this</code>指向的同时，会立即调用这个函数。而<code>bind</code>仅仅返回一个新函数，在这之后调用它，才会执行。</p>
+<h4 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
 </search>
