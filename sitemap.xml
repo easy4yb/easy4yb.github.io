@@ -2,16 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://ez4yb.cn/2021/04/15/apply%E3%80%81call%E5%92%8Cbind/</loc>
+    <loc>https://ez4yb.cn/2021/04/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
+    
+    <lastmod>2021-04-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ez4yb.cn/2021/04/19/CSS%E7%9A%84Flex%E5%B8%83%E5%B1%80/</loc>
     
     <lastmod>2021-04-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://ez4yb.cn/2021/04/18/SASS%E5%85%A5%E9%97%A8%E6%80%BB%E7%BB%93/</loc>
+    <loc>https://ez4yb.cn/2021/03/05/CSS%E6%B5%AE%E5%8A%A8/</loc>
     
-    <lastmod>2021-04-18</lastmod>
+    <lastmod>2021-04-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ez4yb.cn/2021/03/03/CSS%E7%9A%84position%E5%AE%9A%E4%BD%8D/</loc>
+    
+    <lastmod>2021-04-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://ez4yb.cn/2021/04/15/apply%E3%80%81call%E5%92%8Cbind/</loc>
+    
+    <lastmod>2021-04-19</lastmod>
     
   </url>
   
@@ -37,13 +58,6 @@
   </url>
   
   <url>
-    <loc>https://ez4yb.cn/2021/03/05/CSS%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93/</loc>
-    
-    <lastmod>2021-03-31</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://ez4yb.cn/2021/03/17/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/</loc>
     
     <lastmod>2021-03-31</lastmod>
@@ -52,13 +66,6 @@
   
   <url>
     <loc>https://ez4yb.cn/2021/03/15/JavaScript%E6%B7%B1%E6%8B%B7%E8%B4%9D/</loc>
-    
-    <lastmod>2021-03-31</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://ez4yb.cn/2021/03/03/CSS%E5%AE%9A%E4%BD%8D%E6%80%BB%E7%BB%93/</loc>
     
     <lastmod>2021-03-31</lastmod>
     
@@ -151,7 +158,7 @@
 
   <url>
     <loc>https://ez4yb.cn/</loc>
-    <lastmod>2021-04-19</lastmod>
+    <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -159,63 +166,63 @@
   
   <url>
     <loc>https://ez4yb.cn/tags/CSS/</loc>
-    <lastmod>2021-04-19</lastmod>
+    <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://ez4yb.cn/tags/Git/</loc>
-    <lastmod>2021-04-19</lastmod>
+    <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://ez4yb.cn/tags/JavaScript/</loc>
-    <lastmod>2021-04-19</lastmod>
+    <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://ez4yb.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2021-04-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://ez4yb.cn/tags/SASS/</loc>
-    <lastmod>2021-04-19</lastmod>
+    <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://ez4yb.cn/tags/Markdown/</loc>
-    <lastmod>2021-04-19</lastmod>
+    <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://ez4yb.cn/tags/Typora/</loc>
-    <lastmod>2021-04-19</lastmod>
+    <lastmod>2021-04-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://ez4yb.cn/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://ez4yb.cn/tags/html/</loc>
-    <lastmod>2021-04-19</lastmod>
+    <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://ez4yb.cn/tags/%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD/</loc>
-    <lastmod>2021-04-19</lastmod>
+    <lastmod>2021-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
