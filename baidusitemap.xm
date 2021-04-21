@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ez4yb.cn/2021/04/21/%E5%89%8D%E5%90%8E%E7%AB%AF%E9%80%9A%E4%BF%A1/</loc>
+    <lastmod>2021-04-21</lastmod>
+  </url>
+  <url>
     <loc>https://ez4yb.cn/2021/03/15/JavaScript%E6%B7%B1%E6%8B%B7%E8%B4%9D/</loc>
     <lastmod>2021-04-20</lastmod>
   </url>
