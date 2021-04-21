@@ -787,6 +787,15 @@
 <li>PUT: 更新数据</li>
 <li>DELETE: 删除数据</li>
 </ul>
+<h4 id="GET和POST对比"><a href="#GET和POST对比" class="headerlink" title="GET和POST对比"></a>GET和POST对比</h4><p><strong>语义</strong><br>GET：获取数据<br>POST：创建数据<br><strong>发送数据</strong><br>GET通过地址在请求头中携带数据。<br>POST既可以通过地址在请求头中携带数据，也可以通过请求体携带数据。<br>因此：携带少量数据，可以使用GET请求，大量数据可以使用POST请求<br><strong>缓存</strong><br>GET可以被缓存<br>POST不会被缓存<br><strong>安全</strong><br>GET和POST都不安全</p>
+<h4 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h4><p>HTTP状态码定义服务器对请求的处理结果，是服务器返回的<br>含义：</p>
+<ul>
+<li>100~199 消息：代表请求已经接受，需要进一步处理</li>
+<li>200~299 成功</li>
+<li>300~388 重定向<code>301: Moved Permantently; 302: Moved Temporarily; 304: Not Modified</code></li>
+<li>400~499 请求错误<code>400: Bad Request; 404: Not Found</code></li>
+<li>500~599 服务器错误<code>500: Internal Sever Error</code></li>
+</ul>
 ]]></content>
       <tags>
         <tag>计算机网络</tag>
