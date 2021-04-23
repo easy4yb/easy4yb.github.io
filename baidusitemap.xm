@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ez4yb.cn/2021/03/24/CSS%E7%9A%84Flex%E5%B8%83%E5%B1%80/</loc>
+    <lastmod>2021-04-23</lastmod>
+  </url>
+  <url>
+    <loc>https://ez4yb.cn/2021/04/21/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/</loc>
+    <lastmod>2021-04-21</lastmod>
+  </url>
+  <url>
     <loc>https://ez4yb.cn/2021/04/21/%E5%89%8D%E5%90%8E%E7%AB%AF%E9%80%9A%E4%BF%A1/</loc>
     <lastmod>2021-04-21</lastmod>
   </url>
@@ -11,10 +19,6 @@
   <url>
     <loc>https://ez4yb.cn/2021/04/01/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2021-04-20</lastmod>
-  </url>
-  <url>
-    <loc>https://ez4yb.cn/2021/04/19/CSS%E7%9A%84Flex%E5%B8%83%E5%B1%80/</loc>
-    <lastmod>2021-04-19</lastmod>
   </url>
   <url>
     <loc>https://ez4yb.cn/2021/03/05/CSS%E6%B5%AE%E5%8A%A8/</loc>
