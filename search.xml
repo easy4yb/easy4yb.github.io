@@ -999,4 +999,72 @@
         <tag>浏览器</tag>
       </tags>
   </entry>
+  <entry>
+    <title>JSON</title>
+    <url>/2021/04/28/JSON/</url>
+    <content><![CDATA[<p>JSON是一种轻量级数据格式，可以方便的表示复杂数据结构。</p>
+<a id="more"></a>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>JSON语法支持三种类型：</p>
+<ul>
+<li><strong>简单值</strong>：字符串、数值、布尔值和<code>null</code>可以在JSON中出现，<code>undefined</code>不可以。</li>
+<li><strong>对象</strong>：即有序键值对，这个值可以是简单类型也可以是复杂类型。</li>
+<li><strong>数组</strong>：数组值可以是任意值。</li>
+</ul>
+<p>JSON没有变量、函数或对象实例的概念，所有记号都只为表示结构化数据。</p>
+<h3 id="解析与序列化"><a href="#解析与序列化" class="headerlink" title="解析与序列化"></a>解析与序列化</h3><p>JSON对象有两个方法：</p>
+<ul>
+<li><code>stringify</code>：将JavaScript序列化位JSON字符串。</li>
+<li><code>parse</code>：将JSON解析为原生JavaScript值。</li>
+</ul>
+<h4 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h4><p><code>JSON.stringify</code>允许传入三个参数:</p>
+<blockquote>
+<p>JSON.stringify(value[, replacer [, space]])</p>
+</blockquote>
+<h5 id="value"><a href="#value" class="headerlink" title="value"></a>value</h5><p>即传入的需要序列化的对象</p>
+<h5 id="replacer（可选）"><a href="#replacer（可选）" class="headerlink" title="replacer（可选）"></a>replacer（可选）</h5><p>允许传入数组或函数。</p>
+<ul>
+<li>如果是函数，则序列化的值的每个属性都会经过该函数的转换和处理。</li>
+<li>如果是数组，则只有包含在这个数组内的属性名才会被序列化到最终的JSON字符串。</li>
+<li>如果是<code>null</code>或未传入，则对象所有属性都会被序列化。</li>
+</ul>
+<h5 id="space（可选）"><a href="#space（可选）" class="headerlink" title="space（可选）"></a>space（可选）</h5><p>控制缩进和空格</p>
+<ul>
+<li>如果是数值，表示每一级缩进的空格数</li>
+<li>如果缩进参数是一个字符串，那么JSON字符串就会用这个字符串来缩进。</li>
+</ul>
+<h5 id="toJSON方法"><a href="#toJSON方法" class="headerlink" title="toJSON方法"></a>toJSON方法</h5><p>在要序列化的对象中添加<code>toJSON</code>方法，序列化时会基于这个方法返回适当的JSON表示。</p>
+<p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> book = &#123;</span><br><span class="line">	title: <span class="string">&#x27;xxx&#x27;</span>,</span><br><span class="line">	time: <span class="string">&#x27;2021.4.27.&#x27;</span>,</span><br><span class="line">	content: <span class="string">&#x27;xxxxxxxxx&#x27;</span>,</span><br><span class="line">	toJSON: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">this</span>.title;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> jsonStr = <span class="built_in">JSON</span>.stringify(book);</span><br><span class="line"><span class="built_in">console</span>.log(jsonStr);	<span class="comment">//&#x27;xxx&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><p><code>JSON.parse</code>允许传入两个参数</p>
+<blockquote>
+<p>JSON.parse(text[, reviver])</p>
+</blockquote>
+<h5 id="text"><a href="#text" class="headerlink" title="text"></a>text</h5><p>将要被解析成JavaScript值的字符串</p>
+<h5 id="reviver（可选）"><a href="#reviver（可选）" class="headerlink" title="reviver（可选）"></a>reviver（可选）</h5><p>与<code>replacer</code>类似，可以传入函数，来修改解析生成的初始值，调用时机在<code>parse</code>函数返回之前。</p>
+]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript异步总结</title>
+    <url>/2021/04/20/JavaScript%E5%BC%82%E6%AD%A5%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>在JavaScript这种单线程事件循环模型中，同步操作和异步操作是代码所要依赖的核心。</p>
+<a id="more"></a>
+
+<h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><p><strong>同步行为</strong>对应内存中顺序执行的处理器指令。每条指令都会严格按照它们出现的顺序来执行，而每条指令执行后也能立即获得储存在系统本地的信息。<br><strong>异步行为</strong>类似于系统中断，即当前进程外部的实体可以触发代码执行。异步操作经常是必要的，因为强制进程等待一个长时间的操作通常是不可行的，比如向远程服务器发送请求并等待响应。</p>
+<h3 id="以往的异步编程模式"><a href="#以往的异步编程模式" class="headerlink" title="以往的异步编程模式"></a>以往的异步编程模式</h3><p>早期的JavaScript只支持定义回调函数来表明异步操作完成。因此，串联多个异步操作时，通常需要深度嵌套的回调函数（“回调地狱”）来解决，随着嵌套越来越复杂，嵌套回调的代码很难维护</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3>]]></content>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>柯里化函数</title>
+    <url>/2021/04/23/%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>javascipt</tag>
+      </tags>
+  </entry>
 </search>

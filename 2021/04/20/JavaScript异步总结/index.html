@@ -23,18 +23,20 @@
     var CONFIG = {"hostname":"ez4yb.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Huster">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Blog of yb">
-<meta property="og:url" content="https://ez4yb.cn/tags/JavaScript/index.html">
+  <meta name="description" content="在JavaScript这种单线程事件循环模型中，同步操作和异步操作是代码所要依赖的核心。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript异步总结">
+<meta property="og:url" content="https://ez4yb.cn/2021/04/20/JavaScript%E5%BC%82%E6%AD%A5%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Blog of yb">
-<meta property="og:description" content="Huster">
+<meta property="og:description" content="在JavaScript这种单线程事件循环模型中，同步操作和异步操作是代码所要依赖的核心。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-20T01:23:58.000Z">
+<meta property="article:modified_time" content="2021-04-24T15:58:56.178Z">
 <meta property="article:author" content="袁斌">
-<meta property="article:tag" content="前端,js,jquery,javascript,html5,开发者,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://ez4yb.cn/tags/JavaScript/">
+<link rel="canonical" href="https://ez4yb.cn/2021/04/20/JavaScript%E5%BC%82%E6%AD%A5%E6%80%BB%E7%BB%93/">
 
 
 <script id="page-configurations">
@@ -42,12 +44,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签: JavaScript | Blog of yb</title>
+  <title>JavaScript异步总结 | Blog of yb</title>
   
 
 
@@ -179,235 +181,115 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">JavaScript
-          <small>标签</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ez4yb.cn/2021/04/20/JavaScript%E5%BC%82%E6%AD%A5%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="袁斌">
+      <meta itemprop="description" content="Huster">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog of yb">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaScript异步总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-20 09:23:58" itemprop="dateCreated datePublished" datetime="2021-04-20T09:23:58+08:00">2021-04-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-24 23:58:56" itemprop="dateModified" datetime="2021-04-24T23:58:56+08:00">2021-04-24</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>306</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <p>在JavaScript这种单线程事件循环模型中，同步操作和异步操作是代码所要依赖的核心。</p>
+<a id="more"></a>
+
+<h3 id="同步与异步"><a href="#同步与异步" class="headerlink" title="同步与异步"></a>同步与异步</h3><p><strong>同步行为</strong>对应内存中顺序执行的处理器指令。每条指令都会严格按照它们出现的顺序来执行，而每条指令执行后也能立即获得储存在系统本地的信息。<br><strong>异步行为</strong>类似于系统中断，即当前进程外部的实体可以触发代码执行。异步操作经常是必要的，因为强制进程等待一个长时间的操作通常是不可行的，比如向远程服务器发送请求并等待响应。</p>
+<h3 id="以往的异步编程模式"><a href="#以往的异步编程模式" class="headerlink" title="以往的异步编程模式"></a>以往的异步编程模式</h3><p>早期的JavaScript只支持定义回调函数来表明异步操作完成。因此，串联多个异步操作时，通常需要深度嵌套的回调函数（“回调地狱”）来解决，随着嵌套越来越复杂，嵌套回调的代码很难维护</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-28T08:50:10+08:00"
-              content="2021-04-28">
-          04-28
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/28/JSON/" itemprop="url">
-            <span itemprop="name">JSON</span>
-          </a>
-      </div>
+        
 
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-20T09:23:58+08:00"
-              content="2021-04-20">
-          04-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/20/JavaScript%E5%BC%82%E6%AD%A5%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">JavaScript异步总结</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-15T11:56:57+08:00"
-              content="2021-04-15">
-          04-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/15/apply%E3%80%81call%E5%92%8Cbind/" itemprop="url">
-            <span itemprop="name">apply、call和bind</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-17T10:51:18+08:00"
-              content="2021-03-17">
-          03-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/17/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/" itemprop="url">
-            <span itemprop="name">JavaScript原型与继承总结</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-03-15T17:14:06+08:00"
-              content="2021-03-15">
-          03-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/03/15/JavaScript%E6%B7%B1%E6%8B%B7%E8%B4%9D/" itemprop="url">
-            <span itemprop="name">JavaScript深拷贝</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-22T19:01:50+08:00"
-              content="2021-02-22">
-          02-22
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/22/JavaScript%E5%AE%9E%E7%8E%B0%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" itemprop="url">
-            <span itemprop="name">JavaScript实现二叉搜索树</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-19T19:14:37+08:00"
-              content="2021-02-19">
-          02-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/19/JavaScript%E5%AE%9E%E7%8E%B0%E5%93%88%E5%B8%8C%E8%A1%A8/" itemprop="url">
-            <span itemprop="name">JavaScript实现哈希表</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-17T08:29:44+08:00"
-              content="2021-02-17">
-          02-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/17/JavaScript%E5%AE%9E%E7%8E%B0%E9%9B%86%E5%90%88/" itemprop="url">
-            <span itemprop="name">JavaScript实现集合</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-15T07:30:12+08:00"
-              content="2021-02-15">
-          02-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/15/JavaScript%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%A1%A8/" itemprop="url">
-            <span itemprop="name">JavaScript实现链表</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-02-13T09:22:14+08:00"
-              content="2021-02-13">
-          02-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/02/13/JavaScript%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/" itemprop="url">
-            <span itemprop="name">JavaScript实现队列</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/15/apply%E3%80%81call%E5%92%8Cbind/" rel="prev" title="apply、call和bind">
+      <i class="fa fa-chevron-left"></i> apply、call和bind
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/21/%E5%89%8D%E5%90%8E%E7%AB%AF%E9%80%9A%E4%BF%A1/" rel="next" title="前后端通信">
+      前后端通信 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-  </div>
+      </footer>
+    
+  </article>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/tags/JavaScript/page/2/">2</a><a class="extend next" rel="next" href="/tags/JavaScript/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -459,6 +341,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E4%B8%8E%E5%BC%82%E6%AD%A5"><span class="nav-number">1.</span> <span class="nav-text">同步与异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A5%E5%BE%80%E7%9A%84%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">以往的异步编程模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise"><span class="nav-number">3.</span> <span class="nav-text">Promise</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
