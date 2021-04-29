@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ez4yb.cn/2021/03/31/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/</loc>
+    <lastmod>2021-04-29</lastmod>
+  </url>
+  <url>
+    <loc>https://ez4yb.cn/2021/04/23/%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/</loc>
+    <lastmod>2021-04-29</lastmod>
+  </url>
+  <url>
     <loc>https://ez4yb.cn/2021/04/21/%E5%89%8D%E5%90%8E%E7%AB%AF%E9%80%9A%E4%BF%A1/</loc>
     <lastmod>2021-04-28</lastmod>
   </url>
@@ -9,20 +17,8 @@
     <lastmod>2021-04-28</lastmod>
   </url>
   <url>
-    <loc>https://ez4yb.cn/2021/04/20/JavaScript%E5%BC%82%E6%AD%A5%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2021-04-24</lastmod>
-  </url>
-  <url>
-    <loc>https://ez4yb.cn/2021/04/23/%E6%9F%AF%E9%87%8C%E5%8C%96%E5%87%BD%E6%95%B0/</loc>
-    <lastmod>2021-04-23</lastmod>
-  </url>
-  <url>
     <loc>https://ez4yb.cn/2021/03/24/CSS%E7%9A%84Flex%E5%B8%83%E5%B1%80/</loc>
     <lastmod>2021-04-23</lastmod>
-  </url>
-  <url>
-    <loc>https://ez4yb.cn/2021/04/21/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8/</loc>
-    <lastmod>2021-04-21</lastmod>
   </url>
   <url>
     <loc>https://ez4yb.cn/2021/03/15/JavaScript%E6%B7%B1%E6%8B%B7%E8%B4%9D/</loc>
@@ -55,10 +51,6 @@
   <url>
     <loc>https://ez4yb.cn/2021/01/30/Git%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2021-04-16</lastmod>
-  </url>
-  <url>
-    <loc>https://ez4yb.cn/2021/03/17/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/</loc>
-    <lastmod>2021-03-31</lastmod>
   </url>
   <url>
     <loc>https://ez4yb.cn/2021/03/01/BFC%E6%80%BB%E7%BB%93/</loc>
