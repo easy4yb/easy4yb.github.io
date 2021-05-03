@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://ez4yb.cn/2021/04/15/apply%E3%80%81call%E5%92%8Cbind/</loc>
+    <lastmod>2021-05-03</lastmod>
+  </url>
+  <url>
     <loc>https://ez4yb.cn/2021/03/31/JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E7%BB%A7%E6%89%BF/</loc>
     <lastmod>2021-04-29</lastmod>
   </url>
@@ -34,10 +38,6 @@
   </url>
   <url>
     <loc>https://ez4yb.cn/2021/03/03/CSS%E7%9A%84position%E5%AE%9A%E4%BD%8D/</loc>
-    <lastmod>2021-04-19</lastmod>
-  </url>
-  <url>
-    <loc>https://ez4yb.cn/2021/04/15/apply%E3%80%81call%E5%92%8Cbind/</loc>
     <lastmod>2021-04-19</lastmod>
   </url>
   <url>
